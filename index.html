@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FG'S AUTO · 富贵车房 · Shenzhen</title>
+  <meta name="description" content="FG's Auto (富贵车房) — Expert auto care in Shenzhen, Guangdong. Oil changes, brakes, tires and more." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue: #0088CD;
+      --blue-dark: #006EB8;
+      --blue-light: #2FA1DB;
+      --bg-0: #070707;
+      --bg-1: #0a0a0a;
+      --bg-2: #0d0d0d;
+      --bg-3: #161616;
+      --text-primary: #ffffff;
+      --text-muted: rgba(255,255,255,0.4);
+      --text-dim: rgba(255,255,255,0.2);
+      --border: rgba(255,255,255,0.06);
+      --border-blue: rgba(0,136,205,0.2);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300;
+      color: var(--text-primary);
+      background: var(--bg-1);
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 48px;
+      background: var(--bg-0);
+      border-bottom: 0.5px solid var(--border-blue);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo-wrap { display: flex; align-items: center; gap: 12px; }
+
+    .logo-icon { width: 38px; height: 38px; flex-shrink: 0; }
+
+    .logo-text {
+      font-weight: 700;
+      font-size: 17px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #fff;
+      line-height: 1.2;
+    }
+    .logo-text span { color: var(--blue); }
+    .logo-cn { font-size: 10px; color: rgba(0,136,205,0.6); letter-spacing: 2px; }
+
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--blue); }
+
+    .nav-right { display: flex; align-items: center; gap: 14px; }
+
+    .social-row { display: flex; gap: 8px; }
+    .soc-btn {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      border: 0.5px solid var(--border-blue);
+      background: transparent;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-muted);
+      font-size: 15px;
+      font-weight: 700;
+      transition: border-color 0.2s, color 0.2s;
+      cursor: pointer;
+    }
+    .soc-btn:hover { border-color: var(--blue); color: var(--blue); }
+
+    .nav-cta {
+      background: var(--blue);
+      color: #fff;
+      padding: 9px 20px;
+      border-radius: 2px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--blue-dark); }
+
+    /* ── VIDEO ── */
+    .video-section {
+      background: #000;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border-blue);
+    }
+
+    .video-frame {
+      width: 100%;
+      aspect-ratio: 16 / 6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .video-bg-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      opacity: 0.06;
+    }
+
+    .video-corner {
+      position: absolute;
+      font-weight: 700;
+      font-size: clamp(48px, 8vw, 96px);
+      color: rgba(0,136,205,0.05);
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      pointer-events: none;
+      user-select: none;
+    }
+    .vc-tl { top: -8px; left: 32px; }
+    .vc-br { bottom: -8px; right: 32px; }
+
+    .video-overlay { position: relative; z-index: 2; text-align: center; }
+
+    .video-embed-wrap {
+      position: absolute;
+      inset: 0;
+      display: none;
+    }
+    .video-embed-wrap iframe {
+      width: 100%; height: 100%;
+      border: none;
+    }
+
+    .video-play-btn {
+      width: 70px; height: 70px;
+      border-radius: 50%;
+      border: 2px solid var(--blue);
+      background: rgba(0,136,205,0.12);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      margin: 0 auto 16px;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .video-play-btn:hover { background: rgba(0,136,205,0.25); transform: scale(1.05); }
+    .video-play-btn i { font-size: 28px; color: var(--blue); margin-left: 5px; }
+
+    .video-title {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .video-input-row {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 12px;
+    }
+    .video-input {
+      background: rgba(255,255,255,0.05);
+      border: 0.5px solid var(--border-blue);
+      border-radius: 2px;
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      font-size: 12px;
+      padding: 8px 14px;
+      width: 260px;
+      outline: none;
+    }
+    .video-input::placeholder { color: rgba(255,255,255,0.25); }
+    .video-input:focus { border-color: var(--blue); }
+    .video-set-btn {
+      background: var(--blue);
+      color: #fff;
+      border: none;
+      border-radius: 2px;
+      padding: 8px 16px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      transition: background 0.2s;
+    }
+    .video-set-btn:hover { background: var(--blue-dark); }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 60px 48px 52px;
+      background: var(--bg-2);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .hero-tag {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 14px;
+    }
+
+    .hero-title {
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 700;
+      line-height: 1.0;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+    .hero-title em { color: var(--blue); font-style: normal; }
+
+    .hero-loc {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      letter-spacing: 1px;
+    }
+    .hero-loc i { color: var(--blue); font-size: 13px; }
+
+    .hero-desc {
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+      max-width: 400px;
+    }
+
+    .hero-actions { display: flex; gap: 16px; align-items: center; }
+
+    .btn-primary {
+      background: var(--blue);
+      color: #fff;
+      padding: 12px 28px;
+      border-radius: 2px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      transition: background 0.2s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--blue-dark); }
+
+    .btn-ghost {
+      color: var(--text-muted);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+    .btn-ghost:hover { color: var(--blue); }
+
+    .hero-badge-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .hero-badge {
+      background: var(--bg-3);
+      border: 0.5px solid var(--border);
+      border-radius: 10px;
+      padding: 20px 16px;
+      text-align: center;
+      transition: border-color 0.2s;
+    }
+    .hero-badge:hover { border-color: var(--border-blue); }
+    .hero-badge i { font-size: 28px; color: var(--blue); display: block; margin-bottom: 8px; }
+    .hero-badge p { font-size: 11px; font-weight: 500; letter-spacing: 0.5px; color: var(--text-muted); }
+    .hero-badge.accent { background: var(--blue); border-color: var(--blue); }
+    .hero-badge.accent i, .hero-badge.accent p { color: #fff; }
+
+    /* ── STATS ── */
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      background: var(--bg-0);
+      border-top: 0.5px solid var(--border-blue);
+      border-bottom: 0.5px solid var(--border-blue);
+    }
+
+    .stat-item {
+      padding: 22px 48px;
+      text-align: center;
+      border-right: 0.5px solid var(--border);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--blue);
+      letter-spacing: 1px;
+    }
+    .stat-label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 3px;
+    }
+
+    /* ── SECTION COMMON ── */
+    section { padding: 56px 48px; }
+    .sec-tag {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 10px;
+    }
+    .sec-title {
+      font-size: clamp(22px, 3vw, 30px);
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 30px;
+      letter-spacing: 1px;
+    }
+
+    /* ── GALLERY ── */
+    .gallery-section { background: var(--bg-1); }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: 180px 180px;
+      gap: 8px;
+    }
+
+    .gallery-cell {
+      background: var(--bg-3);
+      border: 0.5px solid var(--border);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .gallery-cell.tall { grid-row: span 2; }
+    .gallery-cell:hover { border-color: rgba(0,136,205,0.4); }
+
+    .gallery-cell-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .gallery-cell input[type="file"] {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+      width: 100%;
+      height: 100%;
+    }
+    .gallery-cell img {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+      display: none;
+    }
+    .gallery-icon { font-size: 34px; color: rgba(0,136,205,0.25); }
+    .gallery-label {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.15);
+    }
+    .gallery-tip {
+      font-size: 10px;
+      color: rgba(0,136,205,0.4);
+      letter-spacing: 1px;
+    }
+    .gallery-accent {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--blue);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .gallery-cell:hover .gallery-accent { opacity: 1; }
+
+    /* ── SERVICES ── */
+    .services-section { background: var(--bg-2); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .service-card {
+      background: var(--bg-3);
+      border: 0.5px solid var(--border);
+      border-radius: 10px;
+      padding: 28px 22px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.2s, transform 0.15s;
+    }
+    .service-card:hover { border-color: rgba(0,136,205,0.4); transform: translateY(-2px); }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--blue);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .service-card:hover::before { opacity: 1; }
+
+    .service-icon {
+      width: 44px; height: 44px;
+      background: rgba(0,136,205,0.1);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px;
+    }
+    .service-icon i { font-size: 22px; color: var(--blue); }
+
+    .service-name {
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .service-desc { font-size: 12px; line-height: 1.7; color: var(--text-muted); }
+
+    .service-arrow {
+      position: absolute;
+      bottom: 22px; right: 22px;
+      font-size: 16px;
+      color: rgba(255,255,255,0.12);
+      transition: color 0.2s, transform 0.2s;
+    }
+    .service-card:hover .service-arrow { color: var(--blue); transform: translateX(4px); }
+
+    /* ── WHY ── */
+    .why-section { background: var(--bg-1); }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .why-card {
+      background: var(--bg-3);
+      border: 0.5px solid var(--border);
+      border-radius: 10px;
+      padding: 22px 18px;
+    }
+    .why-card i { font-size: 24px; color: var(--blue); margin-bottom: 12px; display: block; }
+    .why-title { font-size: 13px; font-weight: 600; color: #fff; margin-bottom: 6px; }
+    .why-desc { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+
+    /* ── SOCIAL ── */
+    .social-section {
+      background: var(--bg-0);
+      padding: 48px;
+      border-top: 0.5px solid var(--border-blue);
+      border-bottom: 0.5px solid var(--border-blue);
+    }
+
+    .social-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+    }
+
+    .social-title { font-size: 22px; font-weight: 700; text-transform: uppercase; color: #fff; letter-spacing: 1px; margin-bottom: 6px; }
+    .social-sub { font-size: 12px; color: var(--text-muted); letter-spacing: 0.5px; }
+
+    .social-cards { display: flex; gap: 12px; }
+
+    .soc-card {
+      background: var(--bg-3);
+      border: 0.5px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: border-color 0.2s, background 0.2s;
+      min-width: 140px;
+    }
+    .soc-card:hover { border-color: var(--blue); background: rgba(0,136,205,0.06); }
+
+    .soc-card-icon {
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+    .soc-card-icon.ig { background: rgba(225,48,108,0.12); color: #E1306C; }
+    .soc-card-icon.xhs { background: rgba(255,42,42,0.1); color: #FF2A2A; font-size: 16px; }
+    .soc-card-icon.tt { background: rgba(255,255,255,0.05); color: #fff; border: 0.5px solid rgba(255,255,255,0.1); }
+
+    .soc-card-info p { font-size: 12px; font-weight: 600; color: #fff; margin-bottom: 2px; }
+    .soc-card-info span { font-size: 10px; color: var(--text-muted); }
+
+    /* ── CTA ── */
+    .cta-section {
+      padding: 52px 48px;
+      background: var(--bg-2);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+    }
+
+    .cta-title { font-size: 26px; font-weight: 700; text-transform: uppercase; color: #fff; letter-spacing: 1px; margin-bottom: 8px; }
+    .cta-sub { font-size: 13px; color: var(--text-muted); }
+
+    .cta-right { display: flex; gap: 16px; align-items: center; flex-shrink: 0; }
+    .cta-phone { display: flex; align-items: center; gap: 8px; color: var(--text-muted); font-size: 13px; font-weight: 500; }
+    .cta-phone i { color: var(--blue); font-size: 17px; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 24px 48px;
+      background: var(--bg-0);
+      border-top: 0.5px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-left { display: flex; flex-direction: column; gap: 3px; }
+    .footer-copy { font-size: 11px; color: var(--text-dim); }
+    .footer-cn { font-size: 11px; color: rgba(0,136,205,0.45); letter-spacing: 1px; }
+
+    .footer-links { display: flex; gap: 24px; list-style: none; }
+    .footer-links a { font-size: 11px; color: var(--text-dim); letter-spacing: 0.5px; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--blue); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 14px 20px; }
+      .nav-links { display: none; }
+      .hero { padding: 40px 20px; grid-template-columns: 1fr; }
+      .hero-badge-grid { display: none; }
+      section { padding: 40px 20px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .why-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .gallery-cell.tall { grid-row: span 1; }
+      .social-inner { flex-direction: column; align-items: flex-start; }
+      .social-cards { flex-direction: column; width: 100%; }
+      .cta-section { flex-direction: column; align-items: flex-start; padding: 40px 20px; }
+      .stats-bar { grid-template-columns: 1fr; }
+      .stat-item { border-right: none; border-bottom: 0.5px solid var(--border); }
+      footer { flex-direction: column; gap: 16px; padding: 20px; align-items: flex-start; }
+      .social-section { padding: 40px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo-wrap">
+      <svg class="logo-icon" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="19,2 36,34 2,34" fill="none" stroke="#0088CD" stroke-width="1.6"/>
+        <polygon points="19,10 30,30 8,30" fill="#0088CD" opacity="0.12"/>
+        <line x1="8" y1="24" x2="30" y2="24" stroke="#0088CD" stroke-width="1.6"/>
+        <polygon points="15,24 19,15 23,24" fill="#0088CD"/>
+      </svg>
+      <div>
+        <div class="logo-text">FG<span>'</span>S AUTO</div>
+        <div class="logo-cn">富贵车房</div>
+      </div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#video">Video</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#social">Social</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="social-row">
+        <a class="soc-btn" href="#" target="_blank" rel="noopener" aria-label="Instagram" id="nav-ig-link"><i class="ti ti-brand-instagram"></i></a>
+        <a class="soc-btn" href="#" target="_blank" rel="noopener" aria-label="Xiaohongshu" id="nav-xhs-link" style="font-size:12px;">红</a>
+        <a class="soc-btn" href="#" target="_blank" rel="noopener" aria-label="TikTok" id="nav-tt-link"><i class="ti ti-brand-tiktok"></i></a>
+      </div>
+      <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Book Now</button>
+    </div>
+  </nav>
+
+  <!-- VIDEO -->
+  <div class="video-section" id="video">
+    <div class="video-frame" id="video-frame">
+      <svg class="video-bg-svg" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="dp" x="0" y="0" width="44" height="44" patternUnits="userSpaceOnUse">
+            <polygon points="22,2 42,22 22,42 2,22" fill="none" stroke="#0088CD" stroke-width="0.5"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#dp)"/>
+      </svg>
+      <div class="video-corner vc-tl">FG'S</div>
+      <div class="video-corner vc-br">AUTO</div>
+      <div class="video-embed-wrap" id="video-embed-wrap"></div>
+      <div class="video-overlay" id="video-overlay">
+        <div class="video-play-btn" id="video-play-btn">
+          <i class="ti ti-player-play"></i>
+        </div>
+        <div class="video-title">Shop Tour · 富贵车房 Shenzhen</div>
+        <div class="video-input-row">
+          <input class="video-input" id="video-url-input" type="text" placeholder="Paste YouTube or video URL here…" />
+          <button class="video-set-btn" onclick="setVideo()">Add Video</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div>
+      <div class="hero-tag">深圳市 · 广东省 — Shenzhen, Guangdong</div>
+      <h1 class="hero-title">Your Car<br>Deserves<br><em>Better.</em></h1>
+      <div class="hero-loc"><i class="ti ti-map-pin"></i> Shenzhen, Guangdong, China</div>
+      <p class="hero-desc">Expert auto care you can count on. FG's Auto (富贵车房) delivers precision maintenance with honest pricing and fast turnaround.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="#contact">Book a Service</a>
+        <a class="btn-ghost" href="#services">Our Services <i class="ti ti-arrow-right"></i></a>
+      </div>
+    </div>
+    <div class="hero-badge-grid">
+      <div class="hero-badge"><i class="ti ti-droplet"></i><p>Oil Change</p></div>
+      <div class="hero-badge accent"><i class="ti ti-settings"></i><p>Expert Care</p></div>
+      <div class="hero-badge"><i class="ti ti-wave-square"></i><p>Brakes</p></div>
+      <div class="hero-badge"><i class="ti ti-circle"></i><p>Tires</p></div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stat-item"><div class="stat-num">10+</div><div class="stat-label">Years in Business</div></div>
+    <div class="stat-item"><div class="stat-num">5,000+</div><div class="stat-label">Happy Customers</div></div>
+    <div class="stat-item"><div class="stat-num">Same Day</div><div class="stat-label">Service Available</div></div>
+  </div>
+
+  <!-- GALLERY -->
+  <section class="gallery-section" id="gallery">
+    <div class="sec-tag">Our Work</div>
+    <div class="sec-title">Gallery</div>
+    <div class="gallery-grid" id="gallery-grid">
+      <div class="gallery-cell tall" onclick="triggerUpload(this)">
+        <img alt="Gallery image 1" />
+        <input type="file" accept="image/*" onchange="loadImage(this)" />
+        <div class="gallery-cell-inner">
+          <i class="ti ti-photo gallery-icon"></i>
+          <span class="gallery-label">Shop Floor</span>
+          <span class="gallery-tip">Click to upload</span>
+        </div>
+        <div class="gallery-accent"></div>
+      </div>
+      <div class="gallery-cell" onclick="triggerUpload(this)">
+        <img alt="Gallery image 2" />
+        <input type="file" accept="image/*" onchange="loadImage(this)" />
+        <div class="gallery-cell-inner">
+          <i class="ti ti-droplet gallery-icon"></i>
+          <span class="gallery-label">Oil Change</span>
+          <span class="gallery-tip">Click to upload</span>
+        </div>
+        <div class="gallery-accent"></div>
+      </div>
+      <div class="gallery-cell" onclick="triggerUpload(this)">
+        <img alt="Gallery image 3" />
+        <input type="file" accept="image/*" onchange="loadImage(this)" />
+        <div class="gallery-cell-inner">
+          <i class="ti ti-circle gallery-icon"></i>
+          <span class="gallery-label">Tire Service</span>
+          <span class="gallery-tip">Click to upload</span>
+        </div>
+        <div class="gallery-accent"></div>
+      </div>
+      <div class="gallery-cell" onclick="triggerUpload(this)">
+        <img alt="Gallery image 4" />
+        <input type="file" accept="image/*" onchange="loadImage(this)" />
+        <div class="gallery-cell-inner">
+          <i class="ti ti-wave-square gallery-icon"></i>
+          <span class="gallery-label">Brakes</span>
+          <span class="gallery-tip">Click to upload</span>
+        </div>
+        <div class="gallery-accent"></div>
+      </div>
+      <div class="gallery-cell" onclick="triggerUpload(this)">
+        <img alt="Gallery image 5" />
+        <input type="file" accept="image/*" onchange="loadImage(this)" />
+        <div class="gallery-cell-inner">
+          <i class="ti ti-star gallery-icon"></i>
+          <span class="gallery-label">Before &amp; After</span>
+          <span class="gallery-tip">Click to upload</span>
+        </div>
+        <div class="gallery-accent"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services-section" id="services">
+    <div class="sec-tag">What We Do</div>
+    <div class="sec-title">Our Services</div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon"><i class="ti ti-droplet"></i></div>
+        <div class="service-name">Oil Changes &amp; Maintenance</div>
+        <p class="service-desc">Conventional, synthetic, and high-mileage oil changes with a full multi-point inspection included every visit.</p>
+        <i class="ti ti-arrow-right service-arrow"></i>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="ti ti-wave-square"></i></div>
+        <div class="service-name">Brake &amp; Suspension</div>
+        <p class="service-desc">From brake pad replacement to full suspension diagnostics — we keep you safe on every road.</p>
+        <i class="ti ti-arrow-right service-arrow"></i>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="ti ti-rotate-clockwise"></i></div>
+        <div class="service-name">Tire Services</div>
+        <p class="service-desc">Mounting, balancing, rotation, and alignment. We work with all major tire brands and sizes.</p>
+        <i class="ti ti-arrow-right service-arrow"></i>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section class="why-section">
+    <div class="sec-tag">Why FG's</div>
+    <div class="sec-title">Built on Trust</div>
+    <div class="why-grid">
+      <div class="why-card"><i class="ti ti-clock-check"></i><div class="why-title">Fast Turnaround</div><p class="why-desc">Most services completed same day so you're never without your car for long.</p></div>
+      <div class="why-card"><i class="ti ti-shield-check"></i><div class="why-title">Honest Estimates</div><p class="why-desc">Transparent pricing — no hidden fees, no surprises when you come to pick up.</p></div>
+      <div class="why-card"><i class="ti ti-tool"></i><div class="why-title">Expert Technicians</div><p class="why-desc">Certified mechanics with years of experience on domestic and foreign vehicles.</p></div>
+      <div class="why-card"><i class="ti ti-star"></i><div class="why-title">5-Star Rated</div><p class="why-desc">Thousands of satisfied customers across Shenzhen trust FG's with their cars.</p></div>
+    </div>
+  </section>
+
+  <!-- SOCIAL -->
+  <div class="social-section" id="social">
+    <div class="social-inner">
+      <div>
+        <div class="social-title">Follow FG'S AUTO</div>
+        <div class="social-sub">富贵车房 · Stay connected — update the links below to your real accounts</div>
+      </div>
+      <div class="social-cards">
+        <a class="soc-card" id="ig-card" href="#" target="_blank" rel="noopener" aria-label="Instagram">
+          <div class="soc-card-icon ig"><i class="ti ti-brand-instagram"></i></div>
+          <div class="soc-card-info"><p>Instagram</p><span>@fgsauto</span></div>
+        </a>
+        <a class="soc-card" id="xhs-card" href="#" target="_blank" rel="noopener" aria-label="小红书 Red Note">
+          <div class="soc-card-icon xhs">红</div>
+          <div class="soc-card-info"><p>小红书</p><span>Red Note</span></div>
+        </a>
+        <a class="soc-card" id="tt-card" href="#" target="_blank" rel="noopener" aria-label="TikTok 抖音">
+          <div class="soc-card-icon tt"><i class="ti ti-brand-tiktok"></i></div>
+          <div class="soc-card-info"><p>TikTok / 抖音</p><span>@fgsauto</span></div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA / CONTACT -->
+  <div class="cta-section" id="contact">
+    <div>
+      <div class="cta-title">Ready to Book Your Service?</div>
+      <div class="cta-sub">深圳市 · 广东省 — Drop by or call us. We'll get you taken care of fast.</div>
+    </div>
+    <div class="cta-right">
+      <div class="cta-phone"><i class="ti ti-phone"></i> +86 13686481010</div>
+      <a class="btn-primary" href="https://maps.google.com/?q=Shenzhen+Guangdong+China" target="_blank" rel="noopener">Get Directions</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-left">
+      <div class="footer-copy">© 2026 FG's Auto · 富贵车房. All rights reserved.</div>
+      <div class="footer-cn">深圳市 · 广东省 · Visual Identity v1.0 2025</div>
+    </div>
+    <ul class="footer-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#social">Social</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </footer>
+
+  <script>
+    /* ── VIDEO ── */
+    function setVideo() {
+      var raw = document.getElementById('video-url-input').value.trim();
+      if (!raw) return;
+      var embedUrl = '';
+      var ytMatch = raw.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([A-Za-z0-9_-]{11})/);
+      if (ytMatch) {
+        embedUrl = 'https://www.youtube.com/embed/' + ytMatch[1] + '?autoplay=1&rel=0';
+      } else {
+        embedUrl = raw;
+      }
+      var wrap = document.getElementById('video-embed-wrap');
+      wrap.innerHTML = '<iframe src="' + embedUrl + '" allowfullscreen allow="autoplay; encrypted-media"></iframe>';
+      wrap.style.display = 'block';
+      document.getElementById('video-overlay').style.display = 'none';
+    }
+
+    document.getElementById('video-url-input').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') setVideo();
+    });
+
+    document.getElementById('video-play-btn').addEventListener('click', function() {
+      var input = document.getElementById('video-url-input');
+      if (input.value.trim()) { setVideo(); }
+    });
+
+    /* ── GALLERY ── */
+    function triggerUpload(cell) {
+      var input = cell.querySelector('input[type="file"]');
+      if (input) input.click();
+    }
+
+    function loadImage(input) {
+      var cell = input.closest('.gallery-cell');
+      var img = cell.querySelector('img');
+      var inner = cell.querySelector('.gallery-cell-inner');
+      var file = input.files[0];
+      if (!file) return;
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        img.src = e.target.result;
+        img.style.display = 'block';
+        if (inner) inner.style.display = 'none';
+      };
+      reader.readAsDataURL(file);
+    }
+
+    /* ── SMOOTH SCROLL FALLBACK ── */
+    document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        var id = a.getAttribute('href').slice(1);
+        if (!id) return;
+        var target = document.getElementById(id);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
