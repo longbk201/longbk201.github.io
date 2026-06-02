@@ -57,7 +57,7 @@ Open [http://localhost:8080](http://localhost:8080).
 
 ## Customize
 
-Edit **`scripts/config.js`** for phone, social links, video URL, gallery filenames, and the component load order.
+Edit **`scripts/config.js`** for phone, maps, social platforms (`social` array), gallery filenames, and the component load order. Social UI is built by **`scripts/modules/social.js`** — do not hardcode links in HTML.
 
 Edit section markup in **`components/`** (e.g. `hero.html`, `services.html`).
 
