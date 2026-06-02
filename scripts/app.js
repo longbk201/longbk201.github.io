@@ -2,7 +2,7 @@ import { loadComponents } from './load-components.js';
 import { applyConfig } from './modules/apply-config.js';
 import { initSocial } from './modules/social.js';
 import { initPptShowcase } from './modules/video.js';
-import { initGallery } from './modules/gallery.js';
+import { initFgsAuto } from './modules/gallery.js';
 import { initSmoothScroll } from './modules/scroll.js';
 
 async function bootstrap() {
@@ -23,7 +23,7 @@ async function bootstrap() {
   applyConfig(cfg);
   initSocial(cfg.social);
   initPptShowcase();
-  initGallery(cfg.gallery);
+  initFgsAuto(cfg);
   initSmoothScroll();
 }
 

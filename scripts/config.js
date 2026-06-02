@@ -56,6 +56,30 @@ window.FGS_CONFIG = {
     },
   ],
 
+  fgsAuto: {
+    url: 'https://fullgreatbros.com/FGAUTO',
+    logo: 'assets/images/FGSAUTOLOGO.svg',
+    tag: 'Local Auto Shop · Shenzhen',
+  },
+
+  galleryServices: [
+    {
+      icon: 'ti-droplet',
+      name: 'Oil Changes & Maintenance',
+      desc: 'Conventional, synthetic, and high-mileage oil changes with a full multi-point inspection every visit.',
+    },
+    {
+      icon: 'ti-wave-square',
+      name: 'Brake & Suspension',
+      desc: 'From brake pad replacement to full suspension diagnostics — we keep you safe on every road.',
+    },
+    {
+      icon: 'ti-rotate-clockwise',
+      name: 'Tire Services',
+      desc: 'Mounting, balancing, rotation, and alignment. We work with all major tire brands and sizes.',
+    },
+  ],
+
   gallery: [
     { file: 'shop-floor.jpg', alt: 'Shop floor', label: 'Shop Floor', icon: 'ti-photo', tall: true },
     { file: 'oil-change.jpg', alt: 'Oil change', label: 'Oil Change', icon: 'ti-droplet', tall: false },
@@ -68,7 +92,6 @@ window.FGS_CONFIG = {
     { mount: 'component-hero', file: 'hero.html' },
     { mount: 'component-stats', file: 'stats.html' },
     { mount: 'component-gallery', file: 'gallery.html' },
-    { mount: 'component-services', file: 'services.html' },
     { mount: 'component-about', file: 'about.html' },
     { mount: 'component-social', file: 'social.html' },
     { mount: 'component-contact', file: 'contact.html' },
