@@ -1,0 +1,77 @@
+/** Site-wide content — edit contact & social links here. */
+window.FGS_CONFIG = {
+  /** Phone + maps — applied by apply-config.js */
+  phone: {
+    display: '+86 13686481010',
+    tel: '+8613686481010',
+  },
+  location: {
+    mapsUrl: 'https://maps.google.com/?q=Shenzhen+Guangdong+China',
+  },
+
+  /**
+   * Social platforms — rendered by scripts/modules/social.js
+   * type: "link" opens url in new tab | "qr" shows qrImage popover on click
+   */
+  social: [
+    {
+      id: 'youtube',
+      name: 'YouTube',
+      icon: 'assets/svg/youtube.svg',
+      type: 'link',
+      url: 'https://www.youtube.com/@fullgreatbros001',
+      tooltip: '@fullgreatbros001',
+    },
+    {
+      id: 'bilibili',
+      name: 'Bilibili',
+      icon: 'assets/svg/bilibili.svg',
+      type: 'link',
+      url: 'https://space.bilibili.com/3546866983635207?spm_id_from=333.337.0.0',
+      tooltip: '@富贵兄弟FGmotorsport',
+    },
+    {
+      id: 'instagram',
+      name: 'Instagram',
+      icon: 'assets/svg/instagram.svg',
+      type: 'link',
+      url: 'https://www.instagram.com/fg_bros_auto/',
+      tooltip: '@fgbrosauto',
+    },
+    {
+      id: 'rednote',
+      name: '小红书',
+      icon: 'assets/svg/rednote.svg',
+      type: 'qr',
+      qrImage: 'assets/svg/rednoteQR.svg',
+      tooltip: "#FG'S AUTO富贵车房",
+    },
+    {
+      id: 'tiktok',
+      name: 'TikTok',
+      icon: 'assets/svg/tiktok.svg',
+      type: 'qr',
+      qrImage: 'assets/svg/tiktokQR.svg',
+      tooltip: "@富贵车房 FG'S AUTO",
+    },
+  ],
+
+  gallery: [
+    { file: 'shop-floor.jpg', alt: 'Shop floor', label: 'Shop Floor', icon: 'ti-photo', tall: true },
+    { file: 'oil-change.jpg', alt: 'Oil change', label: 'Oil Change', icon: 'ti-droplet', tall: false },
+    { file: 'tire-service.jpg', alt: 'Tire service', label: 'Tire Service', icon: 'ti-circle', tall: false },
+    { file: 'brakes.jpg', alt: 'Brakes', label: 'Brakes', icon: 'ti-wave-square', tall: false },
+    { file: 'before-after.jpg', alt: 'Before and after', label: 'Before & After', icon: 'ti-star', tall: false },
+  ],
+  components: [
+    { mount: 'component-nav', file: 'FULLGREATBROS.html' },
+    { mount: 'component-hero', file: 'hero.html' },
+    { mount: 'component-stats', file: 'stats.html' },
+    { mount: 'component-gallery', file: 'gallery.html' },
+    { mount: 'component-services', file: 'services.html' },
+    { mount: 'component-about', file: 'about.html' },
+    { mount: 'component-social', file: 'social.html' },
+    { mount: 'component-contact', file: 'contact.html' },
+    { mount: 'component-footer', file: 'footer.html' },
+  ],
+};

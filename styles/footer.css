@@ -1,0 +1,16 @@
+footer {
+  padding: 24px 48px;
+  background: var(--bg-0);
+  border-top: 0.5px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-left { display: flex; flex-direction: column; gap: 3px; }
+.footer-copy { font-size: 11px; color: var(--text-dim); }
+.footer-cn { font-size: 11px; color: rgba(0,136,205,0.45); letter-spacing: 1px; }
+
+.footer-links { display: flex; gap: 24px; list-style: none; }
+.footer-links a { font-size: 11px; color: var(--text-dim); letter-spacing: 0.5px; transition: color 0.2s; }
+.footer-links a:hover { color: var(--blue); }

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <pattern id="dp" x="0" y="0" width="44" height="44" patternUnits="userSpaceOnUse">
+      <polygon points="22,2 42,22 22,42 2,22" fill="none" stroke="#0088CD" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#dp)"/>
+</svg>

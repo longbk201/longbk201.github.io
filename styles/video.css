@@ -1,0 +1,294 @@
+/* Gridlife-style hero: slides under nav/text, navy edge fades (FULLGREATBROS.html) */
+
+.fgb-top {
+  --fgb-navy: #060d18;
+  --fgb-navy-mid: #0c1a32;
+  --fgb-navy-soft: #122744;
+}
+
+.fgb-showcase {
+  position: relative;
+  width: 100%;
+  max-width: 100vw;
+  min-height: min(92vh, 960px);
+  overflow: hidden;
+  background: var(--fgb-navy);
+  isolation: isolate;
+  touch-action: pan-y pinch-zoom;
+}
+
+/* Image loop — bottom layer */
+.fgb-slides {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.fgb-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  opacity: 0;
+  transform: scale(1.06);
+  transition: opacity 0.8s ease, transform 5s ease;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.fgb-slide.is-active {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 1;
+}
+
+/* Navy gradients — separate section from page above/below */
+.fgb-fade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.fgb-fade--top {
+  top: 0;
+  height: clamp(140px, 32vh, 280px);
+  background: linear-gradient(
+    180deg,
+    var(--fgb-navy) 0%,
+    var(--fgb-navy-mid) 18%,
+    rgba(12, 26, 50, 0.85) 42%,
+    rgba(12, 26, 50, 0.35) 68%,
+    transparent 100%
+  );
+}
+
+.fgb-fade--bottom {
+  bottom: 0;
+  height: clamp(120px, 28vh, 240px);
+  background: linear-gradient(
+    0deg,
+    var(--fgb-navy) 0%,
+    var(--fgb-navy-mid) 22%,
+    rgba(12, 26, 50, 0.88) 48%,
+    rgba(12, 26, 50, 0.4) 72%,
+    transparent 100%
+  );
+}
+
+/* Text, logo, controls — above slides + fades */
+.fgb-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.fgb-overlay nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: clamp(18px, 3vw, 28px) clamp(16px, 4vw, 48px);
+  background: transparent;
+  border: none;
+  position: relative;
+  pointer-events: auto;
+}
+
+.fgb-overlay .nav-logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.65));
+}
+
+.fgb-overlay .nav-logo-img {
+  display: block;
+  height: clamp(36px, 5vw, 48px);
+  width: auto;
+  max-width: min(180px, 48vw);
+}
+
+.fgb-overlay .nav-links {
+  display: flex;
+  gap: clamp(14px, 2.5vw, 28px);
+  list-style: none;
+}
+
+.fgb-overlay .nav-links a {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.8);
+  transition: color 0.2s;
+}
+
+.fgb-overlay .nav-links a:hover { color: #fff; }
+
+.fgb-overlay .nav-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.fgb-overlay .social-row { display: flex; gap: 8px; }
+
+.fgb-overlay .soc-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(6, 13, 24, 0.45);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 15px;
+  font-weight: 700;
+  transition: border-color 0.2s, background 0.2s;
+  cursor: pointer;
+}
+
+.fgb-overlay .soc-btn:hover,
+.fgb-overlay .soc-btn.is-qr-open {
+  border-color: var(--blue);
+  color: #fff;
+  background: rgba(0, 136, 205, 0.25);
+}
+
+.fgb-overlay .soc-btn-icon {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  display: block;
+}
+
+.fgb-overlay .nav-cta {
+  background: var(--blue);
+  color: #fff;
+  padding: 9px 20px;
+  border-radius: 2px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+  transition: background 0.2s;
+}
+
+.fgb-overlay .nav-cta:hover { background: var(--blue-dark); }
+
+.fgb-station {
+  align-self: flex-end;
+  margin: 0 clamp(16px, 4vw, 48px) clamp(72px, 10vw, 96px) 0;
+  font-size: clamp(13px, 2.2vw, 17px);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.85);
+  pointer-events: none;
+}
+
+.fgb-controls {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: clamp(16px, 3vw, 32px);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 clamp(14px, 2.5vw, 28px);
+  pointer-events: none;
+}
+
+.fgb-arrow {
+  pointer-events: auto;
+  width: clamp(40px, 10vw, 52px);
+  height: clamp(40px, 10vw, 52px);
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(6, 13, 24, 0.55);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, transform 0.15s;
+}
+
+.fgb-arrow i { font-size: clamp(20px, 5vw, 26px); }
+
+.fgb-arrow:hover {
+  background: rgba(0, 136, 205, 0.4);
+  border-color: var(--blue);
+  transform: scale(1.06);
+}
+
+.fgb-arrow:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+/* Tablet */
+@media (min-width: 600px) and (max-width: 1024px) {
+  .fgb-showcase {
+    min-height: min(80vh, 780px);
+  }
+}
+
+@media (max-width: 900px) {
+  .fgb-overlay .nav-links {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+/* Phone */
+@media (max-width: 599px) {
+  .fgb-showcase {
+    min-height: min(88vh, 720px);
+  }
+
+  .fgb-overlay nav {
+    padding: 14px 16px;
+  }
+
+  .fgb-overlay .nav-links {
+    order: 3;
+    width: 100%;
+    gap: 12px 16px;
+  }
+
+  .fgb-overlay .nav-right {
+    margin-left: auto;
+  }
+
+  .fgb-station {
+    margin-right: 16px;
+    margin-bottom: clamp(64px, 16vw, 80px);
+    letter-spacing: 0.14em;
+  }
+
+  .fgb-fade--top { height: clamp(110px, 26vh, 200px); }
+  .fgb-fade--bottom { height: clamp(96px, 22vh, 180px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fgb-slide { transition: opacity 0.25s ease; transform: none; }
+  .fgb-slide.is-active { transform: none; }
+}

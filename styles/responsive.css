@@ -1,0 +1,19 @@
+@media (max-width: 900px) {
+  nav { padding: 14px 20px; }
+  .nav-logo-img { height: 32px; max-width: min(118px, 48vw); }
+  .nav-links { display: none; }
+  .hero { padding: 40px 20px; grid-template-columns: 1fr; }
+  .hero-badge-grid { display: none; }
+  section { padding: 40px 20px; }
+  .services-grid { grid-template-columns: 1fr; }
+  .why-grid { grid-template-columns: 1fr 1fr; }
+  .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+  .gallery-cell.tall { grid-row: span 1; }
+  .social-inner { flex-direction: column; align-items: flex-start; }
+  .social-cards { flex-direction: column; width: 100%; }
+  .cta-section { flex-direction: column; align-items: flex-start; padding: 40px 20px; }
+  .stats-bar { grid-template-columns: 1fr; }
+  .stat-item { border-right: none; border-bottom: 0.5px solid var(--border); }
+  footer { flex-direction: column; gap: 16px; padding: 20px; align-items: flex-start; }
+  .social-section { padding: 40px 20px; }
+}

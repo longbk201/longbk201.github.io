@@ -1,0 +1,46 @@
+.social-section {
+  background: var(--bg-0);
+  padding: 48px;
+  border-top: 0.5px solid var(--border-blue);
+  border-bottom: 0.5px solid var(--border-blue);
+}
+
+.social-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.social-title { font-size: 22px; font-weight: 700; text-transform: uppercase; color: #fff; letter-spacing: 1px; margin-bottom: 6px; }
+.social-sub { font-size: 12px; color: var(--text-muted); letter-spacing: 0.5px; }
+
+.social-cards { display: flex; gap: 12px; }
+
+.soc-card {
+  background: var(--bg-3);
+  border: 0.5px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: border-color 0.2s, background 0.2s;
+  min-width: 140px;
+}
+.soc-card:hover { border-color: var(--blue); background: rgba(0,136,205,0.06); }
+
+.soc-card-icon {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+.soc-card-icon.ig { background: rgba(225,48,108,0.12); color: #E1306C; }
+.soc-card-icon.xhs { background: rgba(255,42,42,0.1); color: #FF2A2A; font-size: 16px; }
+.soc-card-icon.tt { background: rgba(255,255,255,0.05); color: #fff; border: 0.5px solid rgba(255,255,255,0.1); }
+
+.soc-card-info p { font-size: 12px; font-weight: 600; color: #fff; margin-bottom: 2px; }
+.soc-card-info span { font-size: 10px; color: var(--text-muted); }
