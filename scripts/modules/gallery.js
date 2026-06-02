@@ -25,6 +25,11 @@ function showGalleryImage(img, inner) {
   if (inner) inner.style.display = 'none';
 }
 
+/** Initializes gallery grid and FG'S AUTO section hooks from site config. */
+export function initFgsAuto(cfg) {
+  initGallery(cfg?.gallery);
+}
+
 export function initGallery(items) {
   const grid = document.getElementById('gallery-grid');
   if (!grid || !items?.length) return;
