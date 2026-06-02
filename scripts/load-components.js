@@ -1,8 +1,7 @@
 /**
  * Fetches HTML partials from /components and injects them into mount points.
  */
-export async function loadComponents(manifest) {
-  const base = 'components/';
+export async function loadComponents(manifest, base = '/components/') {
 
   await Promise.all(
     manifest.map(async ({ mount, file }) => {

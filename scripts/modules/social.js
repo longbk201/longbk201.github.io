@@ -1,9 +1,15 @@
+/** Ensure asset paths work from any page depth (e.g. /mediagallery/). */
+function resolveAsset(path) {
+  if (!path || /^https?:\/\//.test(path) || path.startsWith('/')) return path;
+  return '/' + path.replace(/^\.\//, '');
+}
+
 let qrLayer = null;
 let activeTrigger = null;
 
 function createIconImg(src, className) {
   const img = document.createElement('img');
-  img.src = src;
+  img.src = resolveAsset(src);
   img.alt = '';
   img.className = className;
   img.decoding = 'async';
@@ -113,7 +119,7 @@ function openQrPopover(trigger, platform) {
   const img = layer.querySelector('.social-qr-popover__img');
   const popover = layer.querySelector('.social-qr-popover');
 
-  img.src = platform.qrImage;
+  img.src = resolveAsset(platform.qrImage);
   img.alt = platform.name + ' QR code';
   activeTrigger = trigger;
   trigger.classList.add('is-qr-open');
@@ -163,13 +169,11 @@ function bindGlobalClose() {
 export function initSocial(platforms) {
   if (!Array.isArray(platforms) || !platforms.length) return;
 
-  const navRow = document.querySelector('.social-row');
-  const cards = document.querySelector('.social-cards');
-
-  if (navRow) {
+  document.querySelectorAll('.social-row').forEach((navRow) => {
     navRow.replaceChildren(...platforms.map(createNavControl));
-  }
+  });
 
+  const cards = document.querySelector('.social-cards');
   if (cards) {
     cards.replaceChildren(...platforms.map(createSectionCard));
   }

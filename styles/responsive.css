@@ -7,12 +7,6 @@
   section { padding: 40px 20px; }
   .services-grid { grid-template-columns: 1fr; }
   .why-grid { grid-template-columns: 1fr 1fr; }
-  .fgs-auto-header { flex-direction: column; align-items: flex-start; gap: 16px; }
-  .fgs-auto-logo { width: 56px; height: 56px; }
-  .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
-  .gallery-cell.tall { grid-row: span 1; }
-  .gallery-cell { min-height: 140px; }
-  .fgs-services-grid { grid-template-columns: 1fr; }
   .social-inner { flex-direction: column; align-items: flex-start; }
   .social-cards { flex-direction: column; width: 100%; }
   .cta-section { flex-direction: column; align-items: flex-start; padding: 40px 20px; }
