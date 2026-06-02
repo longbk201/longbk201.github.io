@@ -1,3 +1,9 @@
+/** Ensure asset paths work from any page depth (e.g. /mediagallery/). */
+function resolveAsset(path) {
+  if (!path || /^https?:\/\//.test(path) || path.startsWith('/')) return path;
+  return '/' + path.replace(/^\.\//, '');
+}
+
 /** Renders social platforms from config into nav rows and the social section. */
 export function initSocial(platforms) {
   if (!platforms?.length) return;
@@ -63,9 +69,10 @@ function createSocialCard(platform) {
 }
 
 function createIcon(platform, size = 18) {
-  if (platform.icon?.endsWith('.svg')) {
+  const iconSrc = resolveAsset(platform.icon);
+  if (iconSrc?.endsWith('.svg')) {
     const img = document.createElement('img');
-    img.src = platform.icon;
+    img.src = iconSrc;
     img.alt = '';
     img.className = 'soc-btn-icon';
     img.width = size;
@@ -87,7 +94,8 @@ function toggleQrPopover(anchor, platform) {
   existing?.remove();
   document.querySelectorAll('.is-qr-open').forEach((el) => el.classList.remove('is-qr-open'));
 
-  if (!platform.qrImage) return;
+  const qrSrc = resolveAsset(platform.qrImage);
+  if (!qrSrc) return;
 
   const pop = document.createElement('div');
   pop.id = 'social-qr-popover';
@@ -96,7 +104,7 @@ function toggleQrPopover(anchor, platform) {
     'position:fixed;z-index:9999;padding:12px;background:#0d1520;border:1px solid rgba(0,136,205,0.4);border-radius:8px;box-shadow:0 12px 40px rgba(0,0,0,0.5);';
 
   const img = document.createElement('img');
-  img.src = platform.qrImage;
+  img.src = qrSrc;
   img.alt = platform.name + ' QR code';
   img.style.cssText = 'display:block;width:min(240px,70vw);height:auto;border-radius:4px;';
 
