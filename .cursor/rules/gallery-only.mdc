@@ -1,0 +1,42 @@
+---
+description: Restrict agent edits to the gallery section only
+globs: components/gallery.html,styles/gallery.css,assets/images/gallery/**,scripts/modules/gallery.js
+alwaysApply: false
+---
+
+# Gallery section scope
+
+When working on the **gallery** block, change only gallery-related files. Do not edit hero, nav, video, social, services, contact, or unrelated styles/scripts.
+
+## Allowed files
+
+| Purpose | Path |
+|---------|------|
+| Markup | `components/gallery.html` |
+| Styles | `styles/gallery.css` |
+| Images | `assets/images/gallery/**` |
+| Grid, upload, image load | `scripts/modules/gallery.js` |
+
+## Optional (with user approval)
+
+- `scripts/config.js` — `fgsAuto` (url, logo, tag), `gallery` array, `galleryServices` array; remove `component-services` from `components` when merging services here
+- `styles/responsive.css` — only `.fgs-auto-*` and `.gallery-*` rules inside the `@media (max-width: 900px)` block
+
+## Content
+
+- Section brand: **FG'S AUTO** · 富贵车房 — local auto shop block.
+- Gallery items from `FGS_CONFIG.gallery`; services from `FGS_CONFIG.galleryServices`.
+- All gallery cells, service cards, and the CTA link to `fgsAuto.url` (default `https://fullgreatbros.com/FGAUTO`) in a new tab.
+- Image paths: `assets/images/gallery/` via `file`, or full `src` for one-off assets.
+
+## Assets
+
+- Put new gallery images under **`assets/images/gallery/`**.
+- Reference filenames in config only (e.g. `shop-floor.jpg`), not full paths in markup.
+
+## Do not
+
+- Edit `scripts/app.js`, `index.html`, or other component HTML unless the user explicitly approves.
+- Change section tag/title copy in `gallery.html` unless the user asks.
+
+If a change requires another file, ask the user before editing outside this scope.

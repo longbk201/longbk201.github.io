@@ -62,31 +62,58 @@ window.FGS_CONFIG = {
     tag: 'Local Auto Shop · Shenzhen',
   },
 
-  galleryServices: [
+  gallery: [
     {
+      src: 'assets/images/test%20image/0C1A3151.jpg',
+      alt: 'FG\'S AUTO shop floor',
+      label: 'Shop Floor',
+      icon: 'ti-photo',
+      tall: true,
+    },
+    {
+      src: 'assets/images/test%20image/0Z5A1184.jpg',
+      alt: 'Oil change service',
+      label: 'Oil Change',
       icon: 'ti-droplet',
-      name: 'Oil Changes & Maintenance',
-      desc: 'Conventional, synthetic, and high-mileage oil changes with a full multi-point inspection every visit.',
     },
     {
+      src: 'assets/images/test%20image/0Z5A6892.jpg',
+      alt: 'Tire service',
+      label: 'Tire Service',
+      icon: 'ti-circle',
+    },
+    {
+      src: 'assets/images/test%20image/0Z5A1976.jpg',
+      alt: 'Brake service',
+      label: 'Brakes',
       icon: 'ti-wave-square',
-      name: 'Brake & Suspension',
-      desc: 'From brake pad replacement to full suspension diagnostics — we keep you safe on every road.',
     },
     {
-      icon: 'ti-rotate-clockwise',
-      name: 'Tire Services',
-      desc: 'Mounting, balancing, rotation, and alignment. We work with all major tire brands and sizes.',
+      src: 'assets/images/test%20image/SF300658.jpg',
+      alt: 'Before and after',
+      label: 'Before & After',
+      icon: 'ti-star',
     },
   ],
 
-  gallery: [
-    { file: 'shop-floor.jpg', alt: 'Shop floor', label: 'Shop Floor', icon: 'ti-photo', tall: true },
-    { file: 'oil-change.jpg', alt: 'Oil change', label: 'Oil Change', icon: 'ti-droplet', tall: false },
-    { file: 'tire-service.jpg', alt: 'Tire service', label: 'Tire Service', icon: 'ti-circle', tall: false },
-    { file: 'brakes.jpg', alt: 'Brakes', label: 'Brakes', icon: 'ti-wave-square', tall: false },
-    { file: 'before-after.jpg', alt: 'Before and after', label: 'Before & After', icon: 'ti-star', tall: false },
+  galleryServices: [
+    {
+      name: 'Oil Changes & Maintenance',
+      desc: 'Conventional, synthetic, and high-mileage oil changes with a full multi-point inspection included every visit.',
+      icon: 'ti-droplet',
+    },
+    {
+      name: 'Brake & Suspension',
+      desc: 'From brake pad replacement to full suspension diagnostics — we keep you safe on every road.',
+      icon: 'ti-wave-square',
+    },
+    {
+      name: 'Tire Services',
+      desc: 'Mounting, balancing, rotation, and alignment. We work with all major tire brands and sizes.',
+      icon: 'ti-rotate-clockwise',
+    },
   ],
+
   components: [
     { mount: 'component-nav', file: 'FULLGREATBROS.html' },
     { mount: 'component-hero', file: 'hero.html' },

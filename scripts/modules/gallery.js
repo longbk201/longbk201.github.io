@@ -1,72 +1,86 @@
+const DEFAULT_FGS_AUTO_URL = 'https://fullgreatbros.com/FGAUTO';
 const GALLERY_BASE = 'assets/images/gallery/';
 
-function triggerUpload(cell) {
-  cell.querySelector('input[type="file"]')?.click();
+function resolveImageSrc(item) {
+  if (item.src) return item.src;
+  if (item.file) return GALLERY_BASE + item.file;
+  return '';
 }
 
-function loadImage(fileInput) {
-  const cell = fileInput.closest('.gallery-cell');
-  const img = cell?.querySelector('img');
-  const inner = cell?.querySelector('.gallery-cell-inner');
-  const file = fileInput.files?.[0];
-  if (!file || !img) return;
-
-  const reader = new FileReader();
-  reader.onload = (e) => {
-    img.src = e.target.result;
-    img.style.display = 'block';
-    if (inner) inner.style.display = 'none';
-  };
-  reader.readAsDataURL(file);
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
 }
 
-function showGalleryImage(img, inner) {
-  img.style.display = 'block';
-  if (inner) inner.style.display = 'none';
+function createFgsAutoLink(url, className, innerHTML) {
+  const link = document.createElement('a');
+  link.className = className;
+  link.href = url;
+  link.target = '_blank';
+  link.rel = 'noopener noreferrer';
+  link.innerHTML = innerHTML;
+  return link;
 }
 
 export function initGallery(items) {
+  const cfg = window.FGS_CONFIG || {};
+  const fgs = cfg.fgsAuto || {};
+  const url = fgs.url || DEFAULT_FGS_AUTO_URL;
+  const services = cfg.galleryServices || [];
+
+  const logo = document.querySelector('.fgs-auto-logo');
+  if (logo && fgs.logo) logo.src = fgs.logo;
+
+  const tag = document.querySelector('.fgs-auto-section .sec-tag');
+  if (tag && fgs.tag) tag.textContent = fgs.tag;
+
   const grid = document.getElementById('gallery-grid');
-  if (!grid || !items?.length) return;
+  if (grid && items?.length) {
+    items.forEach((item, index) => {
+      const src = resolveImageSrc(item);
+      const iconMarkup = item.icon
+        ? `<i class="ti ${escapeHtml(item.icon)} gallery-cell-icon"></i>`
+        : '';
 
-  items.forEach((item, index) => {
-    const cell = document.createElement('div');
-    cell.className = 'gallery-cell' + (item.tall ? ' tall' : '');
-    cell.dataset.index = String(index);
-
-    cell.innerHTML =
-      '<img alt="' +
-      item.alt +
-      '" />' +
-      '<input type="file" accept="image/*" />' +
-      '<div class="gallery-cell-inner">' +
-      '<i class="ti ' +
-      item.icon +
-      ' gallery-icon"></i>' +
-      '<span class="gallery-label">' +
-      item.label +
-      '</span>' +
-      '<span class="gallery-tip">Click to upload</span>' +
-      '</div>' +
-      '<div class="gallery-accent"></div>';
-
-    const img = cell.querySelector('img');
-    const inner = cell.querySelector('.gallery-cell-inner');
-    const fileInput = cell.querySelector('input[type="file"]');
-
-    img.addEventListener('load', () => showGalleryImage(img, inner));
-    img.addEventListener('error', () => {
-      img.style.display = 'none';
+      const cell = createFgsAutoLink(
+        url,
+        'gallery-cell' + (item.tall ? ' tall' : ''),
+        `<img src="${escapeHtml(src)}" alt="${escapeHtml(item.alt || item.label || '')}" loading="lazy" decoding="async" />
+         <div class="gallery-cell-overlay">
+           ${iconMarkup}
+           <span class="gallery-cell-label">${escapeHtml(item.label || '')}</span>
+           <span class="gallery-cell-go">View on FG'S AUTO <i class="ti ti-arrow-up-right"></i></span>
+         </div>
+         <div class="gallery-accent"></div>`
+      );
+      cell.dataset.index = String(index);
+      grid.appendChild(cell);
     });
-    img.src = GALLERY_BASE + item.file;
+  }
 
-    cell.addEventListener('click', (e) => {
-      if (e.target === fileInput) return;
-      triggerUpload(cell);
+  const servicesEl = document.getElementById('fgs-services');
+  if (servicesEl && services.length) {
+    services.forEach((svc) => {
+      const card = createFgsAutoLink(
+        url,
+        'fgs-service-card',
+        `<div class="fgs-service-icon"><i class="ti ${escapeHtml(svc.icon)}"></i></div>
+         <div class="fgs-service-name">${escapeHtml(svc.name)}</div>
+         <p class="fgs-service-desc">${escapeHtml(svc.desc)}</p>
+         <i class="ti ti-arrow-right fgs-service-arrow"></i>`
+      );
+      servicesEl.appendChild(card);
     });
-    fileInput.addEventListener('change', () => loadImage(fileInput));
-    fileInput.addEventListener('click', (e) => e.stopPropagation());
+  }
 
-    grid.appendChild(cell);
-  });
+  const cta = document.querySelector('.fgs-auto-cta');
+  if (cta) cta.href = url;
+}
+
+/** Alias used by app.js */
+export function initFgsAuto(cfg) {
+  initGallery(cfg?.gallery);
 }
