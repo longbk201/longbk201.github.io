@@ -3,17 +3,23 @@ import { applyConfig } from './modules/apply-config.js';
 import { initSocial } from './modules/social.js';
 import { initPptShowcase } from './modules/video.js';
 import { initFgsAuto } from './modules/gallery.js';
+import { initMediaGalleryPage } from './media-gallery-page.js';
 import { initSmoothScroll } from './modules/scroll.js';
 
 async function bootstrap() {
   const cfg = window.FGS_CONFIG;
-  if (!cfg) {
-    console.error('[FGS] Missing FGS_CONFIG — load scripts/config.js first.');
+  const pageKey = window.FGS_PAGE || 'home';
+  const pageCfg = cfg?.pages?.[pageKey];
+
+  if (!cfg || !pageCfg) {
+    console.error('[FGS] Missing config for page:', pageKey);
     return;
   }
 
+  if (pageCfg.title) document.title = pageCfg.title;
+
   try {
-    await loadComponents(cfg.components);
+    await loadComponents(pageCfg.components);
   } catch (err) {
     console.error('[FGS]', err);
     document.body.classList.add('load-error');
@@ -22,9 +28,11 @@ async function bootstrap() {
 
   applyConfig(cfg);
   initSocial(cfg.social);
-  initPptShowcase();
-  initFgsAuto(cfg);
-  initSmoothScroll();
+
+  if (pageCfg.initShowcase) initPptShowcase();
+  if (pageCfg.initGallery) initFgsAuto(cfg);
+  if (pageCfg.initMediaGallery) initMediaGalleryPage(cfg.mediaGallery);
+  if (pageCfg.initScroll) initSmoothScroll();
 }
 
 bootstrap();
