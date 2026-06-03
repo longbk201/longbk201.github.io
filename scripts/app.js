@@ -5,6 +5,9 @@ import { initPptShowcase } from './modules/video.js';
 import { initFgsAutoBlock, initMediaPreview } from './modules/gallery.js';
 import { initMediaGalleryPage } from './media-gallery-page.js';
 import { initSmoothScroll } from './modules/scroll.js';
+import { initWhatsApp } from './modules/whatsapp.js';
+import { initContact } from './modules/contact.js';
+import { initBusinessHours } from './modules/business-hours.js';
 
 async function bootstrap() {
   const cfg = window.FGS_CONFIG;
@@ -27,7 +30,10 @@ async function bootstrap() {
   }
 
   applyConfig(cfg);
+  initBusinessHours(cfg);
+  initWhatsApp(cfg);
   initSocial(cfg.social);
+  initContact(cfg);
 
   if (pageCfg.initShowcase) initPptShowcase();
   if (pageCfg.initFgsAuto) initFgsAutoBlock(cfg);

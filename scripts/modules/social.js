@@ -33,11 +33,7 @@ function createNavControl(platform) {
     el.rel = 'noopener noreferrer';
   } else {
     el.type = 'button';
-    el.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      toggleQrPopover(el, platform);
-    });
+    bindQrTrigger(el, platform);
   }
 
   el.appendChild(createIconImg(platform.icon, 'soc-btn-icon'));
@@ -58,11 +54,7 @@ function createSectionCard(platform) {
     el.rel = 'noopener noreferrer';
   } else {
     el.type = 'button';
-    el.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      toggleQrPopover(el, platform);
-    });
+    bindQrTrigger(el, platform);
   }
 
   const iconWrap = document.createElement('div');
@@ -147,10 +139,25 @@ function toggleQrPopover(trigger, platform) {
   openQrPopover(trigger, platform);
 }
 
+/** Bind any button to the shared QR popover (e.g. contact WeChat). */
+export function bindQrTrigger(trigger, platform) {
+  if (!trigger || !platform?.qrImage) return;
+  trigger.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    toggleQrPopover(trigger, platform);
+  });
+}
+
 function bindGlobalClose() {
   document.addEventListener('click', (e) => {
     if (!qrLayer?.classList.contains('is-open')) return;
-    if (e.target.closest('.social-qr-popover') || e.target.closest('.soc-btn[type="button"]') || e.target.closest('.soc-card[type="button"]')) {
+    if (
+      e.target.closest('.social-qr-popover') ||
+      e.target.closest('.soc-btn[type="button"]') ||
+      e.target.closest('.soc-card[type="button"]') ||
+      e.target.closest('.contact-wechat-btn[type="button"]')
+    ) {
       return;
     }
     closeQrPopover();

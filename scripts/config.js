@@ -5,11 +5,58 @@ window.FGS_CONFIG = {
     display: '+86 13686481010',
     tel: '+86 13686481010',
   },
+  /** WhatsApp Click-to-Chat (wa.me) + floating widget — scripts/modules/whatsapp.js */
+  whatsapp: {
+    url: 'https://wa.me/19494164168',
+    display: 'FGSAUTO',
+    /** Optional prefilled message (?text=) */
+    message: '',
+    widget: {
+      enabled: true,
+      position: 'bottom-right',
+      greeting: 'Hi! Message us on WhatsApp — we typically reply during business hours.',
+      ctaLabel: 'Start Chat',
+      /** false = FAB opens wa.me directly; true = FAB opens a small panel first */
+      showPanel: true,
+    },
+  },
+  email: {
+    address: 'contact@fullgreatbros.com',
+  },
+  wechat: {
+    id: 'FGSAUTO',
+    qrImage: '/assets/svg/wechatQR.png',
+  },
+  /**
+   * Shop hours — live Open now / Closed (shop timezone).
+   * Mon–Sat 09:30–19:30; Sunday closed.
+   */
+  hours: {
+    timezone: 'Asia/Shanghai',
+    schedule: [{ days: [1, 2, 3, 4, 5, 6], open: '09:30', close: '19:30' }],
+    labels: {
+      openNow: 'Open now',
+      openNowZh: '营业中',
+      closed: 'Closed',
+      closedZh: '已打烊',
+      closedToday: 'Closed today',
+      closedTodayZh: '今日休息',
+      openToday: 'Open today',
+      openTodayZh: '今日营业',
+      hoursRange: 'Mon–Sat 9:30 AM – 7:30 PM',
+      hoursRangeZh: '周一至周六 09:30–19:30',
+      sundayNote: 'Sunday closed',
+      sundayNoteZh: '周日休息',
+    },
+  },
   location: {
     mapsUrl: 'https://www.amap.com/place/B0LK5HSI6N',
     zh: '深圳市南山区南山大道南油第四工业区一栋一层1022',
     en: '1022 Building 1, Nanyou 4th Industrial Zone, Nanshan Avenue, Nanshan District, Shenzhen, Guangdong, China',
     short: '南山区 · 深圳市 · 广东省',
+    /** Google Maps embed iframe src (Visit Us card) */
+    googleMapsEmbed:
+      'https://www.google.com/maps/embed?q=1022+Building+1,+Nanyou+4th+Industrial+Zone,+Nanshan+Avenue,+Nanshan+District,+Shenzhen,+Guangdong,+China&hl=en&z=17',
   },
 
   /**

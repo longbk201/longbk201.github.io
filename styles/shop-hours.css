@@ -1,0 +1,127 @@
+.shop-hours {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 4px;
+  padding-top: 12px;
+  border-top: 0.5px solid var(--border);
+}
+
+.shop-hours-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.shop-hours-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: var(--text-muted);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.shop-hours-dot.is-open {
+  background: #3ecf8e;
+  box-shadow: 0 0 0 3px rgba(62, 207, 142, 0.2);
+}
+
+.shop-hours-dot.is-closed {
+  background: #8b95a8;
+}
+
+.shop-hours-status-text {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 10px;
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.2px;
+}
+
+.shop-hours-status-en {
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 11px;
+}
+
+.shop-hours--open .shop-hours-status-en {
+  color: #3ecf8e;
+}
+
+.shop-hours--closed .shop-hours-status-en {
+  color: var(--text-muted);
+}
+
+.shop-hours-status-zh {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.shop-hours-today {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.shop-hours-today-en {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.shop-hours-today-zh {
+  color: var(--text-muted);
+}
+
+.shop-hours-schedule,
+.shop-hours-schedule-zh {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.shop-hours-schedule {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.shop-hours-schedule-zh {
+  color: var(--text-muted);
+}
+
+.shop-hours-note {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  margin: 0;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.shop-hours-note-zh {
+  opacity: 0.9;
+}
+
+.contact-hours {
+  max-width: 520px;
+}
+
+.fgsauto-hours {
+  margin-top: 14px;
+  padding-top: 14px;
+}
+
+.fgsauto-hours .shop-hours-status-text {
+  font-size: 12px;
+}
+
+.fgsauto-hours .shop-hours-schedule,
+.fgsauto-hours .shop-hours-schedule-zh {
+  font-size: 11px;
+}

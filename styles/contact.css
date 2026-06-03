@@ -29,7 +29,7 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px;
   padding: 40px 48px 64px;
-  max-width: 960px;
+  max-width: 1040px;
   margin: 0 auto;
 }
 
@@ -48,6 +48,36 @@
   background:
     radial-gradient(ellipse 60% 80% at 0% 100%, rgba(0, 136, 205, 0.1), transparent 50%),
     var(--bg-3);
+}
+
+.contact-visit-layout {
+  display: grid;
+  grid-template-columns: 1fr minmax(220px, 44%);
+  gap: 24px;
+  align-items: stretch;
+}
+
+.contact-visit-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.contact-visit-map {
+  min-height: 220px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 0.5px solid var(--border);
+  background: var(--bg-2);
+}
+
+.contact-google-map {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 220px;
+  border: 0;
 }
 
 .contact-card-icon {
@@ -107,15 +137,51 @@
   margin-top: 8px;
 }
 
-.contact-phone-large {
+.contact-phone-large,
+button.contact-phone-large.contact-wechat-btn {
+  font-family: inherit;
   font-size: 20px;
   font-weight: 600;
+  line-height: 1.35;
   color: #fff;
   transition: color 0.2s;
   margin-top: 4px;
 }
 
 .contact-phone-large:hover { color: var(--blue); }
+
+.contact-card--aligned .contact-phone-large,
+.contact-card--aligned .contact-wechat-btn {
+  margin-top: auto;
+  padding-top: 8px;
+}
+
+.contact-wechat-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  padding-top: 8px;
+  text-align: left;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+.contact-wechat-btn:hover,
+.contact-wechat-btn.is-qr-open {
+  color: var(--blue);
+}
+
+.contact-card--whatsapp .contact-card-icon--whatsapp {
+  background: rgba(0, 136, 205, 0.12);
+}
+
+.contact-card--whatsapp .contact-card-icon--whatsapp i {
+  color: var(--blue);
+}
+
+.contact-whatsapp-large:hover {
+  color: var(--blue);
+}
 
 .contact-link-row {
   display: inline-flex;
@@ -184,5 +250,11 @@
     padding: 32px 20px 48px;
   }
   .contact-card--primary { grid-column: span 1; }
+  .contact-visit-layout {
+    grid-template-columns: 1fr;
+  }
+  .contact-visit-map {
+    min-height: 200px;
+  }
   .cta-section { flex-direction: column; align-items: flex-start; padding: 40px 20px; }
 }

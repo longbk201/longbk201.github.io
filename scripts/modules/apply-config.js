@@ -1,4 +1,4 @@
-/** Applies contact info (phone + location). Social links use initSocial(). */
+/** Applies contact info (phone + location). WhatsApp + social use dedicated modules. */
 export function applyConfig(cfg) {
   const phoneEl = document.getElementById('cta-phone');
   if (phoneEl && cfg.phone) {
@@ -7,6 +7,16 @@ export function applyConfig(cfg) {
     if (text) text.textContent = cfg.phone.display;
   }
 
+  const emailEl = document.getElementById('cta-email');
+  if (emailEl && cfg.email?.address) {
+    emailEl.href = 'mailto:' + cfg.email.address;
+    const emailText = emailEl.querySelector('.cta-email-text');
+    if (emailText) emailText.textContent = cfg.email.address;
+  }
+
+  const wechatText = document.querySelector('.cta-wechat-text');
+  if (wechatText && cfg.wechat?.id) wechatText.textContent = cfg.wechat.id;
+
   const loc = cfg.location || {};
   const mapsUrl = loc.mapsUrl || '#';
 
@@ -14,6 +24,11 @@ export function applyConfig(cfg) {
   mapsLinks.forEach((el) => {
     el.href = mapsUrl;
   });
+
+  const mapFrame = document.getElementById('contact-google-map');
+  if (mapFrame && loc.googleMapsEmbed) {
+    mapFrame.src = loc.googleMapsEmbed;
+  }
 
   const locationFields = [
     ['location-zh', loc.zh],

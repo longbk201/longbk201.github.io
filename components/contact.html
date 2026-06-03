@@ -2,17 +2,44 @@
   <header class="contact-hero">
     <div class="sec-tag">Get in Touch</div>
     <h1 class="contact-title">Contact</h1>
-    <p class="contact-subtitle">联系我们 · FG'S AUTO 富贵车房</p>
+    <p class="contact-subtitle">联系我们 · FULL GREAT BROS</p>
   </header>
 
   <div class="contact-grid">
     <div class="contact-card contact-card--primary">
-      <div class="contact-card-icon"><i class="ti ti-map-pin"></i></div>
-      <h2 class="contact-card-title">Visit Us</h2>
-      <p class="contact-card-region" id="contact-location-short"></p>
-      <p class="contact-address-zh" id="contact-location-zh"></p>
-      <p class="contact-address-en" id="contact-location-en"></p>
-      <a class="btn-primary contact-maps-btn" id="maps-link" href="#" target="_blank" rel="noopener">Get Directions</a>
+      <div class="contact-visit-layout">
+        <div class="contact-visit-info">
+          <div class="contact-card-icon"><i class="ti ti-map-pin"></i></div>
+          <h2 class="contact-card-title">Visit Us</h2>
+          <p class="contact-card-region" id="contact-location-short"></p>
+          <p class="contact-address-zh" id="contact-location-zh"></p>
+          <p class="contact-address-en" id="contact-location-en"></p>
+          <div class="shop-hours contact-hours" data-shop-hours aria-live="polite">
+            <div class="shop-hours-status">
+              <span class="shop-hours-dot" aria-hidden="true"></span>
+              <p class="shop-hours-status-text"></p>
+            </div>
+            <p class="shop-hours-today" hidden></p>
+            <p class="shop-hours-schedule"></p>
+            <p class="shop-hours-schedule-zh"></p>
+            <p class="shop-hours-note">
+              <span class="shop-hours-note-en"></span>
+              <span class="shop-hours-note-zh"></span>
+            </p>
+          </div>
+          <a class="btn-primary contact-maps-btn" id="maps-link" href="#" target="_blank" rel="noopener">Get Directions</a>
+        </div>
+        <div class="contact-visit-map">
+          <iframe
+            id="contact-google-map"
+            class="contact-google-map"
+            title="FG'S AUTO location on Google Maps"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
     </div>
 
     <div class="contact-card">
@@ -24,24 +51,37 @@
       </a>
     </div>
 
-    <div class="contact-card">
-      <div class="contact-card-icon"><i class="ti ti-car-garage"></i></div>
-      <h2 class="contact-card-title">FG'S AUTO</h2>
-      <p class="contact-card-desc">Explore our services, location, and what we do at the shop.</p>
-      <a class="contact-link-row fgsauto-page-link" href="/FGSAUTO/">
-        Visit FG'S AUTO Page
-        <i class="ti ti-arrow-right"></i>
+    <div class="contact-card contact-card--whatsapp">
+      <div class="contact-card-icon contact-card-icon--whatsapp"><i class="ti ti-brand-whatsapp"></i></div>
+      <h2 class="contact-card-title">WhatsApp</h2>
+      <p class="contact-card-desc">Chat with us on WhatsApp — tap to open a conversation.</p>
+      <a
+        class="contact-phone-large contact-whatsapp-large"
+        id="cta-whatsapp"
+        href="https://wa.me/19494164168"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <span class="cta-whatsapp-text">FGSAUTO</span>
       </a>
     </div>
 
-    <div class="contact-card">
-      <div class="contact-card-icon"><i class="ti ti-info-circle"></i></div>
-      <h2 class="contact-card-title">About Us</h2>
-      <p class="contact-card-desc">Learn the Full Great Bros story — people, cars, and lifestyle.</p>
-      <a class="contact-link-row" href="/about/">
-        Read Our Story
-        <i class="ti ti-arrow-right"></i>
+    <div class="contact-card contact-card--aligned">
+      <div class="contact-card-icon"><i class="ti ti-mail"></i></div>
+      <h2 class="contact-card-title">Email</h2>
+      <p class="contact-card-desc">Send us a message — we'll get back to you as soon as we can.</p>
+      <a class="contact-phone-large" id="cta-email" href="mailto:contact@fullgreatbros.com">
+        <span class="cta-email-text">contact@fullgreatbros.com</span>
       </a>
+    </div>
+
+    <div class="contact-card contact-card--aligned">
+      <div class="contact-card-icon"><i class="ti ti-brand-wechat"></i></div>
+      <h2 class="contact-card-title">WeChat</h2>
+      <p class="contact-card-desc">Add us on WeChat — tap the ID below to show our QR code.</p>
+      <button type="button" class="contact-phone-large contact-wechat-btn" id="cta-wechat" aria-haspopup="dialog">
+        <span class="cta-wechat-text">FGSAUTO</span>
+      </button>
     </div>
   </div>
 </section>
