@@ -1,19 +1,10 @@
-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 16px 48px;
-  background: var(--bg-0);
-  border-bottom: 0.5px solid var(--border-blue);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
+/* Shared nav typography & controls — layout in mobile-nav.css */
 
 .nav-logo {
   display: flex;
   align-items: center;
   flex-shrink: 0;
+  z-index: 201;
 }
 
 .nav-logo-img {
@@ -23,7 +14,15 @@ nav {
   max-width: min(148px, 42vw);
 }
 
-.nav-links { display: flex; gap: 28px; list-style: none; }
+.site-nav--hero .nav-logo {
+  filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.65));
+}
+
+.site-nav--hero .nav-logo-img {
+  height: clamp(36px, 5vw, 48px);
+  max-width: min(180px, 48vw);
+}
+
 .nav-links a {
   font-size: 11px;
   font-weight: 600;
@@ -32,6 +31,7 @@ nav {
   color: var(--text-muted);
   transition: color 0.2s;
 }
+
 .nav-links a:hover { color: var(--blue); }
 
 .nav-right { display: flex; align-items: center; gap: 14px; }
@@ -73,5 +73,15 @@ nav {
   transition: background 0.2s;
   text-decoration: none;
   display: inline-block;
+  min-height: 44px;
+  line-height: 26px;
 }
 .nav-cta:hover { background: var(--blue-dark); }
+
+.site-nav--hero .nav-cta {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+}
+
+@media (max-width: 900px) {
+  .nav-logo-img { height: 32px; max-width: min(118px, 48vw); }
+}

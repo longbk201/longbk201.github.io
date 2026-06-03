@@ -86,7 +86,7 @@ export function initPptShowcase(racingCfg) {
   });
 
   root.addEventListener('click', (e) => {
-    if (e.target.closest('nav, .fgb-arrow, button, a')) return;
+    if (e.target.closest('.site-nav, .fgb-arrow, button, a')) return;
     window.location.href = racingUrl;
   });
 

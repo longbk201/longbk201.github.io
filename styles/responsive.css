@@ -1,7 +1,6 @@
+/* Global mobile optimizations */
+
 @media (max-width: 900px) {
-  nav { padding: 14px 20px; }
-  .nav-logo-img { height: 32px; max-width: min(118px, 48vw); }
-  .nav-links { display: none; }
   section { padding: 40px 20px; }
   .why-grid { grid-template-columns: 1fr 1fr; }
   .social-inner { flex-direction: column; align-items: flex-start; }
@@ -11,4 +10,33 @@
   .stat-item { border-right: none; border-bottom: 0.5px solid var(--border); }
   footer { flex-direction: column; gap: 16px; padding: 20px; align-items: flex-start; }
   .social-section { padding: 40px 20px; }
+
+  .btn-primary,
+  .btn-ghost {
+    min-height: 44px;
+    align-items: center;
+  }
+
+  .fgsauto-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .fgsauto-actions .btn-primary,
+  .fgsauto-actions .btn-ghost {
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+@media (max-width: 599px) {
+  .why-grid { grid-template-columns: 1fr; }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    -webkit-tap-highlight-color: rgba(0, 136, 205, 0.15);
+  }
 }

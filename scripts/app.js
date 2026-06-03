@@ -10,6 +10,7 @@ import { initSmoothScroll } from './modules/scroll.js';
 import { initWhatsApp } from './modules/whatsapp.js';
 import { initContact } from './modules/contact.js';
 import { initBusinessHours } from './modules/business-hours.js';
+import { initMobileUi } from './modules/mobile-ui.js';
 
 async function bootstrap() {
   const cfg = window.FGS_CONFIG;
@@ -36,6 +37,7 @@ async function bootstrap() {
   initWhatsApp(cfg);
   initSocial(cfg.social);
   initContact(cfg);
+  initMobileUi();
 
   if (pageCfg.initShowcase) initPptShowcase(cfg.racing);
   if (pageCfg.initFgsAuto) initFgsAutoBlock(cfg);

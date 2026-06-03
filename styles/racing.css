@@ -146,9 +146,9 @@
   background: var(--bg-0);
 }
 
-.racing-page nav {
-  position: relative;
-  z-index: 10;
+.racing-page .site-nav {
+  position: sticky;
+  z-index: 200;
 }
 
 .racing-main {

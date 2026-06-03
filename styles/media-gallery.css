@@ -3,9 +3,9 @@
   background: var(--bg-0);
 }
 
-.media-gallery-page nav {
-  position: relative;
-  z-index: 10;
+.media-gallery-page .site-nav {
+  position: sticky;
+  z-index: 200;
 }
 
 .media-gallery-main {
