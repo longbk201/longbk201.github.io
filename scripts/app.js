@@ -3,7 +3,9 @@ import { applyConfig } from './modules/apply-config.js';
 import { initSocial } from './modules/social.js';
 import { initPptShowcase } from './modules/video.js';
 import { initFgsAutoBlock, initMediaPreview } from './modules/gallery.js';
+import { initRacingPreview } from './modules/racing.js';
 import { initMediaGalleryPage } from './media-gallery-page.js';
+import { initRacingPage } from './racing-page.js';
 import { initSmoothScroll } from './modules/scroll.js';
 import { initWhatsApp } from './modules/whatsapp.js';
 import { initContact } from './modules/contact.js';
@@ -35,10 +37,12 @@ async function bootstrap() {
   initSocial(cfg.social);
   initContact(cfg);
 
-  if (pageCfg.initShowcase) initPptShowcase();
+  if (pageCfg.initShowcase) initPptShowcase(cfg.racing);
   if (pageCfg.initFgsAuto) initFgsAutoBlock(cfg);
   if (pageCfg.initGallery) initMediaPreview(cfg.mediaGallery);
+  if (pageCfg.initRacingPreview) initRacingPreview(cfg.racing);
   if (pageCfg.initMediaGallery) initMediaGalleryPage(cfg.mediaGallery);
+  if (pageCfg.initRacingPage) initRacingPage(cfg.racing);
   if (pageCfg.initScroll) initSmoothScroll();
 }
 

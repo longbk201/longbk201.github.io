@@ -1,9 +1,14 @@
 const AUTO_MS = 4500;
 const RESUME_MS = 8000;
+const DEFAULT_RACING_URL = '/racing/';
 
-export function initPptShowcase() {
+export function initPptShowcase(racingCfg) {
   const root = document.getElementById('fgb-showcase');
   if (!root) return;
+
+  const racingUrl = racingCfg?.url || DEFAULT_RACING_URL;
+  const stationLink = document.getElementById('fgb-station-link');
+  if (stationLink) stationLink.href = racingUrl;
 
   const slides = [...root.querySelectorAll('.fgb-slide')];
   const prevBtn = document.getElementById('fgb-prev');
@@ -79,6 +84,13 @@ export function initPptShowcase() {
     if (document.hidden) stopAuto();
     else startAuto();
   });
+
+  root.addEventListener('click', (e) => {
+    if (e.target.closest('nav, .fgb-arrow, button, a')) return;
+    window.location.href = racingUrl;
+  });
+
+  root.style.cursor = 'pointer';
 
   show(index);
   startAuto();
