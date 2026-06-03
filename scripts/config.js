@@ -56,6 +56,10 @@ window.FGS_CONFIG = {
     },
   ],
 
+  home: {
+    url: '/HOMEPAGE/',
+  },
+
   fgsAuto: {
     url: '/FGSAUTO/',
     logo: '/assets/images/FGSAUTOLOGO.svg',
@@ -64,32 +68,32 @@ window.FGS_CONFIG = {
 
   gallery: [
     {
-      src: 'assets/images/test%20image/0C1A3151.jpg',
+      src: '/assets/images/showcase/0C1A3151.jpg',
       alt: 'FG\'S AUTO shop floor',
       label: 'Shop Floor',
       icon: 'ti-photo',
       tall: true,
     },
     {
-      src: 'assets/images/test%20image/0Z5A1184.jpg',
+      src: '/assets/images/showcase/0Z5A1184.jpg',
       alt: 'Oil change service',
       label: 'Oil Change',
       icon: 'ti-droplet',
     },
     {
-      src: 'assets/images/test%20image/0Z5A6892.jpg',
+      src: '/assets/images/showcase/0Z5A6892.jpg',
       alt: 'Tire service',
       label: 'Tire Service',
       icon: 'ti-circle',
     },
     {
-      src: 'assets/images/test%20image/0Z5A1976.jpg',
+      src: '/assets/images/showcase/0Z5A1976.jpg',
       alt: 'Brake service',
       label: 'Brakes',
       icon: 'ti-wave-square',
     },
     {
-      src: 'assets/images/test%20image/SF300658.jpg',
+      src: '/assets/images/showcase/SF300658.jpg',
       alt: 'Before and after',
       label: 'Before & After',
       icon: 'ti-star',
@@ -113,10 +117,10 @@ window.FGS_CONFIG = {
     },
   ],
 
-  /** Homepage media preview + /mediagallery index — images in assets/images/gallery 1/ */
+  /** Media gallery — images in assets/images/media-gallery/ */
   mediaGallery: {
     url: '/mediagallery/',
-    basePath: '/assets/images/gallery%201/',
+    basePath: '/assets/images/media-gallery/',
     showcaseTitle: 'GTR sssss....',
     previewCount: 8,
     rotateMs: 10000,

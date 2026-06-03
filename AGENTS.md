@@ -4,17 +4,17 @@
 
 ### Product
 
-Single static marketing site (FG'S AUTO / Full Great Bros). No `package.json`, build step, test runner, or linter. All content is HTML partials under `components/`, styles under `styles/`, and ES modules under `scripts/`.
+Multi-page static marketing site for **Full Great Bros** (FG'S AUTO · 富贵车房). No `package.json`, build step, test runner, or linter. HTML partials under `components/`, styles under `styles/`, ES modules under `scripts/`.
 
 ### Dev server (required)
 
-Components load via `fetch()`, so **do not** open `index.html` with `file://`. From the repository root (`/workspace`, not a `fgs-auto-website/` subfolder):
+Components load via `fetch()`, so **do not** open pages with `file://`. From the repository root:
 
 ```bash
 python3 -m http.server 8080
 ```
 
-Open http://localhost:8080
+Open http://localhost:8080/HOMEPAGE/
 
 Alternatives (`npx serve`, Live Server, etc.) are fine as long as ES modules are served with correct MIME types.
 
@@ -26,17 +26,18 @@ None configured. There is nothing to run beyond serving static files.
 
 | Role | Path |
 |------|------|
-| Shell page | `index.html` |
+| Root redirect | `index.html` → `/HOMEPAGE/` |
+| Homepage shell | `HOMEPAGE/index.html` |
+| Other pages | `FGSAUTO/`, `about/`, `contact/`, `mediagallery/` |
 | Config | `scripts/config.js` (`window.FGS_CONFIG`) |
 | Bootstrap | `scripts/app.js` → `load-components.js` + `scripts/modules/*` |
 
 ### Optional external deps
 
-Google Fonts and Tabler Icons load from CDNs in `index.html`. The site works offline except for those assets and outbound social/map links.
+Google Fonts and Tabler Icons load from CDNs in page shells. The site works offline except for those assets and outbound social/map links.
 
 ### Gotchas
 
-- README `cd fgs-auto-website` is outdated; the repo root **is** the site.
-- Nav/hero links use `#fgs-auto`, but no element with `id="fgs-auto"` exists yet.
-- QR images referenced in `scripts/config.js` (`rednoteQR.svg`, `tiktokQR.svg`) may be missing from `assets/svg/`.
-- Legacy monolithic `main.js` is not loaded by `index.html`; use the modular `scripts/app.js` path.
+- Asset paths in config and markup should be root-absolute (`/assets/...`) so they work from any page depth.
+- Root `/` redirects to `/HOMEPAGE/`; nav logo and Social hash links use `/HOMEPAGE/`.
+- QR images: `assets/svg/rednoteQR.svg`, `assets/svg/tiktokQR.svg`.

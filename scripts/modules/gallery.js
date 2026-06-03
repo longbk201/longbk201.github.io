@@ -1,5 +1,5 @@
 const DEFAULT_FGS_AUTO_URL = 'https://fullgreatbros.com/FGAUTO';
-const GALLERY_BASE = 'assets/images/gallery/';
+const GALLERY_BASE = '/assets/images/gallery/';
 
 function resolveImageSrc(item) {
   if (item.src) return item.src;

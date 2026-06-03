@@ -1,4 +1,4 @@
-const DEFAULT_BASE = '/assets/images/gallery%201/';
+const DEFAULT_BASE = '/assets/images/media-gallery/';
 
 function shuffle(items) {
   const list = items.slice();

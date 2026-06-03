@@ -1,78 +1,78 @@
-# FG'S AUTO · 富贵车房
+# Full Great Bros · 富贵兄弟
 
-Modular static marketing site for FG's Auto in Shenzhen.
+Static marketing site for **Full Great Bros** (富贵兄弟) — a Shenzhen-based brand spanning automotive service (**FG'S AUTO · 富贵车房**), media content, and social presence. Hosted on GitHub Pages at [fullgreatbros.com](https://fullgreatbros.com).
+
+No build step, no framework. HTML partials load at runtime via `fetch()`, and each page is a thin shell that mounts shared components.
+
+## Pages
+
+| URL | Folder | Description |
+|-----|--------|-------------|
+| `/HOMEPAGE/` | `HOMEPAGE/` | Main landing — hero showcase, FG'S AUTO gallery block, stats, social |
+| `/FGSAUTO/` | `FGSAUTO/` | FG'S AUTO service page |
+| `/mediagallery/` | `mediagallery/` | Full photo gallery (114 images) |
+| `/about/` | `about/` | About Full Great Bros |
+| `/contact/` | `contact/` | Phone, location, directions |
+
+The root `index.html` redirects visitors to `/HOMEPAGE/`.
 
 ## Project structure
 
 ```
-fgs-auto-website/
-├── index.html              # Shell + component mount points
+longbk201.github.io/
+├── index.html              # Redirect → /HOMEPAGE/
+├── CNAME                   # fullgreatbros.com
+├── HOMEPAGE/               # Main landing page
+├── FGSAUTO/                # Auto shop page
+├── about/
+├── contact/
+├── mediagallery/
 ├── components/             # HTML partials (one section per file)
-│   ├── nav.html
-│   ├── video.html
-│   ├── hero.html
-│   ├── stats.html
-│   ├── gallery.html
-│   ├── services.html
-│   ├── about.html
-│   ├── social.html
-│   ├── contact.html
-│   └── footer.html
 ├── styles/                 # CSS modules (imported by main.css)
-│   ├── main.css
-│   ├── base.css
-│   ├── hero.css
-│   ├── services.css
-│   ├── about.css
-│   ├── contact.css
-│   ├── footer.css
-│   └── …
 ├── scripts/
-│   ├── config.js           # Content + component manifest
-│   ├── app.js              # Entry point
+│   ├── config.js           # Content, social links, page manifest
+│   ├── app.js              # Bootstrap entry point
 │   ├── load-components.js
-│   └── modules/
-│       ├── apply-config.js
-│       ├── video.js
-│       ├── gallery.js
-│       └── scroll.js
+│   └── modules/            # social, gallery, video, scroll, …
 └── assets/
     ├── images/
-    │   ├── FGSAUTOLOGO.svg
-    │   └── gallery/
-    └── svg/
-        └── video-bg-pattern.svg
+    │   ├── showcase/       # Homepage hero carousel slides
+    │   ├── media-gallery/  # Full Great Media photos
+    │   ├── gallery/        # FG'S AUTO grid images (optional)
+    │   └── fullgreatbros/
+    └── svg/                # Social icons + QR codes
 ```
 
 ## Quick start
 
-Components are loaded with `fetch`, so serve over HTTP:
+Components are loaded with `fetch`, so serve over HTTP (not `file://`):
 
 ```bash
-cd fgs-auto-website
 python3 -m http.server 8080
 ```
 
-Open [http://localhost:8080](http://localhost:8080).
+Open [http://localhost:8080/HOMEPAGE/](http://localhost:8080/HOMEPAGE/)
 
 ## Customize
 
-Edit **`scripts/config.js`** for phone, maps, social platforms (`social` array), gallery filenames, and the component load order. Social UI is built by **`scripts/modules/social.js`** — do not hardcode links in HTML.
+**`scripts/config.js`** — phone, maps URL, social platforms, gallery items, media gallery image list, and per-page component manifests.
 
-Edit section markup in **`components/`** (e.g. `hero.html`, `services.html`).
+**`components/`** — section markup (`hero.html`, `gallery.html`, `social.html`, …).
 
-Edit section styles in matching files under **`styles/`**.
+**`styles/`** — section styles imported by `styles/main.css`.
 
-### Gallery images
+### Social links
 
-Place photos in `assets/images/gallery/`:
+All platform URLs, tooltips, and QR images live in `config.js` → `social` array. UI is rendered by `scripts/modules/social.js` — do not hardcode links in HTML.
 
-- `shop-floor.jpg`
-- `oil-change.jpg`
-- `tire-service.jpg`
-- `brakes.jpg`
-- `before-after.jpg`
+### Images
+
+| Folder | Used by |
+|--------|---------|
+| `assets/images/showcase/` | Homepage hero carousel (`FULLGREATBROS.html`) |
+| `assets/images/media-gallery/` | Media gallery page (`config.js` → `mediaGallery.images`) |
+| `assets/images/gallery/` | FG'S AUTO grid on homepage (via `config.js` → `gallery`) |
 
 ## Deploy
 
-Upload the full project root to any static host. No build step required. ES modules must be served with correct MIME types (standard on Netlify, GitHub Pages, Cloudflare Pages).
+Push to `main` on this repo. GitHub Pages serves the site automatically. ES modules require correct MIME types (standard on GitHub Pages). Custom domain is configured via `CNAME`.
