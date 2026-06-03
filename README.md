@@ -8,7 +8,7 @@ No build step, no framework. HTML partials load at runtime via `fetch()`, and ea
 
 | URL | Folder | Description |
 |-----|--------|-------------|
-| `/HOMEPAGE/` | `HOMEPAGE/` | Main landing — hero showcase, FG'S AUTO gallery block, stats, social |
+| `/HOMEPAGE/` | `HOMEPAGE/` | Main landing — hero showcase, FG'S AUTO block, Full Great Media preview, social |
 | `/FGSAUTO/` | `FGSAUTO/` | FG'S AUTO service page |
 | `/mediagallery/` | `mediagallery/` | Full photo gallery (114 images) |
 | `/about/` | `about/` | About Full Great Bros |
@@ -57,7 +57,7 @@ Open [http://localhost:8080/HOMEPAGE/](http://localhost:8080/HOMEPAGE/)
 
 **`scripts/config.js`** — phone, maps URL, social platforms, gallery items, media gallery image list, and per-page component manifests.
 
-**`components/`** — section markup (`hero.html`, `gallery.html`, `social.html`, …).
+**`components/`** — section markup (`fgsauto.html`, `gallery.html`, `social.html`, …).
 
 **`styles/`** — section styles imported by `styles/main.css`.
 
@@ -70,8 +70,8 @@ All platform URLs, tooltips, and QR images live in `config.js` → `social` arra
 | Folder | Used by |
 |--------|---------|
 | `assets/images/showcase/` | Homepage hero carousel (`FULLGREATBROS.html`) |
-| `assets/images/media-gallery/` | Media gallery page (`config.js` → `mediaGallery.images`) |
-| `assets/images/gallery/` | FG'S AUTO grid on homepage (via `config.js` → `gallery`) |
+| `assets/images/media-gallery/` | Media gallery page + homepage preview mosaic (`config.js` → `mediaGallery.images`) |
+| `assets/images/gallery/` | Optional FG'S AUTO assets |
 
 ## Deploy
 

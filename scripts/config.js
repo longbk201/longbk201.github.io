@@ -7,6 +7,9 @@ window.FGS_CONFIG = {
   },
   location: {
     mapsUrl: 'https://www.amap.com/place/B0LK5HSI6N',
+    zh: '深圳市南山区南山大道南油第四工业区一栋一层1022',
+    en: '1022 Building 1, Nanyou 4th Industrial Zone, Nanshan Avenue, Nanshan District, Shenzhen, Guangdong, China',
+    short: '南山区 · 深圳市 · 广东省',
   },
 
   /**
@@ -66,40 +69,6 @@ window.FGS_CONFIG = {
     tag: 'Local Auto Shop · Shenzhen',
   },
 
-  gallery: [
-    {
-      src: '/assets/images/showcase/0C1A3151.jpg',
-      alt: 'FG\'S AUTO shop floor',
-      label: 'Shop Floor',
-      icon: 'ti-photo',
-      tall: true,
-    },
-    {
-      src: '/assets/images/showcase/0Z5A1184.jpg',
-      alt: 'Oil change service',
-      label: 'Oil Change',
-      icon: 'ti-droplet',
-    },
-    {
-      src: '/assets/images/showcase/0Z5A6892.jpg',
-      alt: 'Tire service',
-      label: 'Tire Service',
-      icon: 'ti-circle',
-    },
-    {
-      src: '/assets/images/showcase/0Z5A1976.jpg',
-      alt: 'Brake service',
-      label: 'Brakes',
-      icon: 'ti-wave-square',
-    },
-    {
-      src: '/assets/images/showcase/SF300658.jpg',
-      alt: 'Before and after',
-      label: 'Before & After',
-      icon: 'ti-star',
-    },
-  ],
-
   galleryServices: [
     {
       name: 'Oil Changes & Maintenance',
@@ -114,6 +83,7 @@ window.FGS_CONFIG = {
     {
       name: 'Tire Services',
       desc: 'Mounting, balancing, rotation, and alignment. We work with all major tire brands and sizes.',
+      icon: 'ti-circle',
     },
   ],
 
@@ -121,6 +91,8 @@ window.FGS_CONFIG = {
   mediaGallery: {
     url: '/mediagallery/',
     basePath: '/assets/images/media-gallery/',
+    homePreviewCount: 10,
+    homeRotateMs: 8000,
     showcaseTitle: 'GTR sssss....',
     previewCount: 8,
     rotateMs: 10000,
@@ -136,7 +108,7 @@ window.FGS_CONFIG = {
       initScroll: true,
       components: [
         { mount: 'component-nav', file: 'FULLGREATBROS.html' },
-        { mount: 'component-hero', file: 'hero.html' },
+        { mount: 'component-fgsauto', file: 'fgsauto.html' },
         { mount: 'component-stats', file: 'stats.html' },
         { mount: 'component-gallery', file: 'gallery.html' },
         { mount: 'component-social', file: 'social.html' },
@@ -145,17 +117,17 @@ window.FGS_CONFIG = {
     },
     fgsauto: {
       title: "FG'S AUTO · Full Great Bros",
+      initFgsAuto: true,
       initScroll: true,
       components: [
         { mount: 'component-nav', file: 'site-nav.html' },
-        { mount: 'component-hero', file: 'hero.html' },
-        { mount: 'component-services', file: 'services.html' },
+        { mount: 'component-fgsauto', file: 'fgsauto.html' },
         { mount: 'component-stats', file: 'stats.html' },
         { mount: 'component-footer', file: 'footer.html' },
       ],
     },
     about: {
-      title: 'About · Full Great Bros',
+      title: 'About · FULL GREAT BROS · 富贵兄弟',
       components: [
         { mount: 'component-nav', file: 'site-nav.html' },
         { mount: 'component-about', file: 'about.html' },
@@ -163,7 +135,7 @@ window.FGS_CONFIG = {
       ],
     },
     contact: {
-      title: 'Contact · Full Great Bros',
+      title: "Contact · FULL GREAT BROS · FG'S AUTO",
       components: [
         { mount: 'component-nav', file: 'site-nav.html' },
         { mount: 'component-contact', file: 'contact.html' },

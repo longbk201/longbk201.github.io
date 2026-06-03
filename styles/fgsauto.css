@@ -1,0 +1,265 @@
+.fgsauto-section {
+  padding: 0;
+  background: var(--bg-2);
+  border-bottom: 0.5px solid var(--border);
+  overflow: hidden;
+}
+
+.fgsauto-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.65fr);
+  gap: 1px;
+  background: var(--border);
+}
+
+.fgsauto-hero {
+  background:
+    radial-gradient(ellipse 80% 60% at 0% 100%, rgba(0, 136, 205, 0.14), transparent 55%),
+    var(--bg-2);
+  padding: 52px 48px 48px;
+  position: relative;
+}
+
+.fgsauto-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--blue), rgba(0, 136, 205, 0.15));
+}
+
+.fgsauto-brand {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin-bottom: 22px;
+}
+
+.fgsauto-logo {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  flex-shrink: 0;
+  filter: drop-shadow(0 8px 24px rgba(0, 136, 205, 0.2));
+}
+
+.fgsauto-tag { margin-bottom: 8px; }
+
+.fgsauto-title {
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 700;
+  line-height: 1.05;
+  text-transform: uppercase;
+  color: #fff;
+  letter-spacing: 0.5px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.fgsauto-subtitle {
+  font-size: clamp(14px, 2vw, 18px);
+  font-weight: 400;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  text-transform: none;
+}
+
+.fgsauto-lead {
+  font-size: 14px;
+  line-height: 1.85;
+  color: var(--text-muted);
+  max-width: 520px;
+  margin-bottom: 28px;
+}
+
+.fgsauto-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.fgsauto-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.fgsauto-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 0.5px solid var(--border);
+  background: rgba(255, 255, 255, 0.03);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.fgsauto-badge i {
+  font-size: 14px;
+  color: var(--blue);
+}
+
+.fgsauto-badge.accent {
+  background: rgba(0, 136, 205, 0.12);
+  border-color: var(--border-blue);
+  color: #fff;
+}
+
+.fgsauto-location {
+  background: var(--bg-3);
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
+}
+
+.fgsauto-location-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+
+.fgsauto-location-head i { font-size: 16px; }
+
+.fgsauto-location-zh {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #fff;
+  font-weight: 500;
+}
+
+.fgsauto-location-en {
+  font-size: 12px;
+  line-height: 1.75;
+  color: var(--text-muted);
+}
+
+.fgsauto-maps-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--blue);
+  transition: color 0.2s;
+}
+
+.fgsauto-maps-link:hover { color: var(--blue-light); }
+
+.fgsauto-services-head {
+  padding: 40px 48px 0;
+}
+
+.fgsauto-services-title { margin-bottom: 20px; }
+
+.fgsauto-services {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  padding: 0 48px 48px;
+}
+
+.fgsauto-service-card {
+  background: var(--bg-3);
+  border: 0.5px solid var(--border);
+  border-radius: 12px;
+  padding: 26px 22px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.2s, transform 0.15s, background 0.2s;
+}
+
+.fgsauto-service-card:hover {
+  border-color: rgba(0, 136, 205, 0.45);
+  transform: translateY(-2px);
+  background: rgba(0, 136, 205, 0.04);
+}
+
+.fgsauto-service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--blue);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.fgsauto-service-card:hover::before { opacity: 1; }
+
+.fgsauto-service-icon {
+  width: 44px;
+  height: 44px;
+  background: rgba(0, 136, 205, 0.1);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.fgsauto-service-icon i { font-size: 22px; color: var(--blue); }
+
+.fgsauto-service-name {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.fgsauto-service-desc {
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--text-muted);
+  padding-right: 24px;
+}
+
+.fgsauto-service-arrow {
+  position: absolute;
+  bottom: 22px;
+  right: 20px;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.12);
+  transition: color 0.2s, transform 0.2s;
+}
+
+.fgsauto-service-card:hover .fgsauto-service-arrow {
+  color: var(--blue);
+  transform: translateX(4px);
+}
+
+@media (max-width: 900px) {
+  .fgsauto-top { grid-template-columns: 1fr; }
+  .fgsauto-hero { padding: 40px 20px; }
+  .fgsauto-location { padding: 28px 20px; }
+  .fgsauto-services-head { padding: 32px 20px 0; }
+  .fgsauto-services {
+    grid-template-columns: 1fr;
+    padding: 0 20px 40px;
+  }
+  .fgsauto-brand { flex-direction: column; align-items: flex-start; }
+}

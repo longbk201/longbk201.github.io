@@ -2,7 +2,7 @@ import { loadComponents } from './load-components.js';
 import { applyConfig } from './modules/apply-config.js';
 import { initSocial } from './modules/social.js';
 import { initPptShowcase } from './modules/video.js';
-import { initFgsAuto } from './modules/gallery.js';
+import { initFgsAutoBlock, initMediaPreview } from './modules/gallery.js';
 import { initMediaGalleryPage } from './media-gallery-page.js';
 import { initSmoothScroll } from './modules/scroll.js';
 
@@ -30,7 +30,8 @@ async function bootstrap() {
   initSocial(cfg.social);
 
   if (pageCfg.initShowcase) initPptShowcase();
-  if (pageCfg.initGallery) initFgsAuto(cfg);
+  if (pageCfg.initFgsAuto) initFgsAutoBlock(cfg);
+  if (pageCfg.initGallery) initMediaPreview(cfg.mediaGallery);
   if (pageCfg.initMediaGallery) initMediaGalleryPage(cfg.mediaGallery);
   if (pageCfg.initScroll) initSmoothScroll();
 }

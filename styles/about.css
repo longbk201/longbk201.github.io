@@ -1,17 +1,196 @@
-.why-section { background: var(--bg-1); }
+.about-page {
+  background: var(--bg-1);
+  min-height: 60vh;
+}
 
-.why-grid {
+.about-hero {
+  padding: 72px 48px 56px;
+  background:
+    radial-gradient(ellipse 70% 80% at 20% 100%, rgba(0, 136, 205, 0.12), transparent 55%),
+    var(--bg-2);
+  border-bottom: 0.5px solid var(--border);
+}
+
+.about-hero-inner {
+  max-width: 720px;
+}
+
+.about-brand-en {
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #fff;
+  line-height: 1.05;
+  margin-bottom: 8px;
+}
+
+.about-brand-zh {
+  font-size: clamp(20px, 3vw, 28px);
+  letter-spacing: 6px;
+  color: var(--blue);
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.about-tagline {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.about-body {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 48px 48px 80px;
+}
+
+.about-intro {
+  margin-bottom: 56px;
+}
+
+.about-intro p,
+.about-chapter-body p {
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.about-lead {
+  font-size: 15px !important;
+  color: rgba(255, 255, 255, 0.85) !important;
+  font-weight: 500;
+  padding-left: 16px;
+  border-left: 2px solid var(--blue);
+  margin-top: 24px !important;
+}
+
+.about-chapter {
+  margin-bottom: 52px;
+  padding-top: 8px;
+  border-top: 0.5px solid var(--border);
+}
+
+.about-chapter-head {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.about-chapter-num {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--blue);
+  padding-top: 6px;
+  flex-shrink: 0;
+}
+
+.about-chapter-title {
+  font-size: clamp(18px, 2.5vw, 22px);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.about-chapter-sub {
+  font-size: 12px;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+}
+
+.about-chapter-body strong {
+  color: #fff;
+  font-weight: 600;
+}
+
+.about-inline-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--blue);
+  transition: color 0.2s, gap 0.2s;
+}
+
+.about-inline-link:hover {
+  color: var(--blue-light);
+  gap: 10px;
+}
+
+.about-value-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px;
 }
 
-.why-card {
+.about-value-card {
   background: var(--bg-3);
   border: 0.5px solid var(--border);
-  border-radius: 10px;
-  padding: 22px 18px;
+  border-radius: 12px;
+  padding: 24px 22px;
 }
-.why-card i { font-size: 24px; color: var(--blue); margin-bottom: 12px; display: block; }
-.why-title { font-size: 13px; font-weight: 600; color: #fff; margin-bottom: 6px; }
-.why-desc { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+
+.about-value-card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--blue);
+  margin-bottom: 4px;
+  letter-spacing: 0.5px;
+}
+
+.about-value-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 12px !important;
+}
+
+.about-value-card p:last-child {
+  font-size: 13px;
+  line-height: 1.75;
+  color: var(--text-muted);
+  margin-bottom: 0;
+}
+
+.about-closing {
+  margin-top: 64px;
+  padding: 40px 0 0;
+  border-top: 0.5px solid var(--border-blue);
+  text-align: center;
+}
+
+.about-closing-line {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 8px;
+}
+
+.about-closing-brand {
+  margin-top: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: var(--text-muted);
+}
+
+@media (max-width: 900px) {
+  .about-hero { padding: 48px 20px 40px; }
+  .about-body { padding: 36px 20px 60px; }
+  .about-value-grid { grid-template-columns: 1fr; }
+  .about-chapter-head { flex-direction: column; gap: 8px; }
+}

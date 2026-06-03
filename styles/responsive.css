@@ -2,10 +2,7 @@
   nav { padding: 14px 20px; }
   .nav-logo-img { height: 32px; max-width: min(118px, 48vw); }
   .nav-links { display: none; }
-  .hero { padding: 40px 20px; grid-template-columns: 1fr; }
-  .hero-badge-grid { display: none; }
   section { padding: 40px 20px; }
-  .services-grid { grid-template-columns: 1fr; }
   .why-grid { grid-template-columns: 1fr 1fr; }
   .social-inner { flex-direction: column; align-items: flex-start; }
   .social-cards { flex-direction: column; width: 100%; }
