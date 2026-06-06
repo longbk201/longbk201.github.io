@@ -1,0 +1,35 @@
+{
+  "logo": {
+    "href": "/HOMEPAGE/",
+    "src": "/assets/images/fullgreatbros/fullgreatbroslogo.svg",
+    "alt": "Full Great Bros",
+    "width": 148,
+    "height": 40
+  },
+  "links": [
+    {
+      "label": "FG'S AUTO",
+      "href": "/FGSAUTO/"
+    },
+    {
+      "label": "FG RACING DEPT.",
+      "href": "/racing/"
+    },
+    {
+      "label": "FULL GREAT MEDIA",
+      "href": "/mediagallery/"
+    },
+    {
+      "label": "About",
+      "href": "/about/"
+    },
+    {
+      "label": "Contact",
+      "href": "/contact/"
+    }
+  ],
+  "cta": {
+    "label": "Book Now",
+    "href": "/contact/"
+  }
+}

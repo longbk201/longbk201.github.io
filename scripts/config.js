@@ -178,11 +178,47 @@ window.FGS_CONFIG = {
     basePath: '/assets/images/media-gallery/',
     homePreviewCount: 10,
     homeRotateMs: 8000,
-    showcaseTitle: 'GTR sssss....',
     previewCount: 8,
     rotateMs: 10000,
     showcaseRotateMs: 5000,
-    images: Array.from({ length: 114 }, (_, i) => 'IMG_' + (i + 1) + '.jpg'),
+    collections: [
+      {
+        id: 'gtr',
+        label: 'GTR sssss....',
+        basePath: '/assets/images/GTRs/',
+        images: Array.from({ length: 121 }, (_, i) => 'GTRs_' + (i + 1) + '.avif'),
+      },
+      {
+        id: 'brz',
+        label: 'BRZs',
+        basePath: '/assets/images/BRZs%20showcase/',
+        images: [
+          'BRZsshoot_3.avif', 'BRZsshoot_4.avif', 'BRZsshoot_5.avif', 'BRZsshoot_6.avif',
+          'BRZsshoot_7.avif', 'BRZsshoot_8.avif', 'BRZsshoot_9.avif', 'BRZsshoot_10.avif',
+          'BRZsshoot_11.avif', 'BRZsshoot_12.avif', 'BRZsshoot_13.avif', 'BRZsshoot_14.avif',
+          'BRZsshoot_15.avif', 'BRZsshoot_16.avif', 'BRZsshoot_17.avif', 'BRZsshoot_18.avif',
+          'BRZsshoot_19.avif', 'BRZsshoot_20.avif', 'BRZsshoot_21.avif', 'BRZsshoot_22.avif',
+          'BRZsshoot_23.avif', 'BRZsshoot_24.avif', 'BRZsshoot_25.avif', 'BRZsshoot_26.avif',
+          'BRZsshoot_27.avif', 'BRZsshoot_28.avif', 'BRZsshoot_29.avif', 'BRZsshoot_30.avif',
+          'BRZsshoot_31.avif', 'BRZsshoot_32.avif', 'BRZsshoot_33.avif', 'BRZsshoot_35.avif',
+          'BRZsshoot_36.avif', 'BRZsshoot_37.avif', 'BRZsshoot_38.avif', 'BRZsshoot_39.avif',
+          'BRZsshoot_40.avif', 'BRZsshoot_41.avif',
+        ],
+      },
+      {
+        id: 'mini',
+        label: 'MINI',
+        basePath: '/assets/images/MINI/',
+        images: [
+          'mini_1.avif', 'mini_2.avif', 'mini_3.avif', 'mini_4.avif', 'mini_5.avif',
+          'mini_6.avif', 'mini_7.avif', 'mini_8.avif', 'mini_9.avif', 'mini_10.avif',
+          'mini_11.avif', 'mini_12.avif', 'mini_13.avif', 'mini_14.avif', 'mini_15.avif',
+          'mini_16.avif', 'mini_17.avif', 'mini_18.avif',
+        ],
+      },
+    ],
+    /** @deprecated use collections[0].images — kept for homepage preview */
+    images: Array.from({ length: 121 }, (_, i) => 'GTRs_' + (i + 1) + '.avif'),
   },
 
   pages: {

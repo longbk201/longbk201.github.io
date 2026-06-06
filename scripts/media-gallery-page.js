@@ -1,63 +1,9 @@
-const DEFAULT_BASE = '/assets/images/media-gallery/';
-
-function shuffle(items) {
-  const list = items.slice();
-  for (let i = list.length - 1; i > 0; i -= 1) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [list[i], list[j]] = [list[j], list[i]];
-  }
-  return list;
-}
-
-function pickRandom(images) {
-  return images[Math.floor(Math.random() * images.length)];
-}
-
-function imageSrc(base, file) {
-  return base + encodeURIComponent(file);
-}
-
-function initShowcase(mediaCfg) {
-  const slides = document.getElementById('media-showcase-slides');
-  const titleEl = document.querySelector('.media-showcase-title');
-  if (!slides || !mediaCfg?.images?.length) return;
-
-  if (titleEl && mediaCfg.showcaseTitle) {
-    titleEl.textContent = mediaCfg.showcaseTitle;
-  }
-
-  const base = mediaCfg.basePath || DEFAULT_BASE;
-  const intervalMs = mediaCfg.showcaseRotateMs || mediaCfg.rotateMs || 5000;
-
-  const imgA = document.createElement('img');
-  const imgB = document.createElement('img');
-  imgA.className = 'media-showcase-slide is-active';
-  imgB.className = 'media-showcase-slide';
-  imgA.alt = '';
-  imgB.alt = '';
-  imgA.decoding = 'async';
-  imgB.decoding = 'async';
-  slides.append(imgA, imgB);
-
-  let active = imgA;
-  let inactive = imgB;
-  let currentFile = pickRandom(mediaCfg.images);
-
-  active.src = imageSrc(base, currentFile);
-
-  window.setInterval(() => {
-    let nextFile = pickRandom(mediaCfg.images);
-    if (mediaCfg.images.length > 1) {
-      while (nextFile === currentFile) nextFile = pickRandom(mediaCfg.images);
-    }
-    currentFile = nextFile;
-
-    inactive.src = imageSrc(base, nextFile);
-    inactive.classList.add('is-active');
-    active.classList.remove('is-active');
-    [active, inactive] = [inactive, active];
-  }, intervalMs);
-}
+import {
+  normalizeCollections,
+  collectionBase,
+  imageSrc,
+} from './modules/media-collections.js';
+import { initFgmediaLogo } from './modules/fgmedia-logo.js';
 
 function openLightbox(src, alt) {
   const existing = document.getElementById('media-lightbox');
@@ -103,40 +49,110 @@ function openLightbox(src, alt) {
   document.addEventListener('keydown', onKey);
 }
 
-export function initMediaGalleryPage(mediaCfg) {
-  initShowcase(mediaCfg);
+function buildGridItem(base, file, index) {
+  const item = document.createElement('figure');
+  item.className = 'media-gallery-item';
+  item.tabIndex = 0;
+  item.setAttribute('role', 'button');
+  item.setAttribute('aria-label', 'View fullsize — image ' + (index + 1));
 
-  const grid = document.getElementById('media-gallery-grid');
-  if (!grid || !mediaCfg?.images?.length) return;
+  const img = document.createElement('img');
+  img.alt = '';
+  img.decoding = 'async';
+  img.loading = index < 16 ? 'eager' : 'lazy';
+  img.src = imageSrc(base, file);
 
-  const base = mediaCfg.basePath || DEFAULT_BASE;
-  const fragment = document.createDocumentFragment();
+  const label = document.createElement('span');
+  label.className = 'media-gallery-view';
+  label.textContent = 'View fullsize';
 
-  mediaCfg.images.forEach((file, index) => {
-    const item = document.createElement('figure');
-    item.className = 'media-gallery-item gallery-spotlight-item';
-    item.tabIndex = 0;
-    item.setAttribute('role', 'button');
-    item.setAttribute('aria-label', 'View full size image ' + (index + 1));
-
-    const img = document.createElement('img');
-    img.alt = 'Full Great Bros media ' + (index + 1);
-    img.decoding = 'async';
-    img.loading = index < 12 ? 'eager' : 'lazy';
-    img.src = imageSrc(base, file);
-
-    const open = () => openLightbox(img.src, img.alt);
-    item.addEventListener('click', open);
-    item.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        open();
-      }
-    });
-
-    item.appendChild(img);
-    fragment.appendChild(item);
+  const open = () => openLightbox(img.src, img.alt || 'Full Great Bros media');
+  item.addEventListener('click', open);
+  item.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      open();
+    }
   });
 
-  grid.appendChild(fragment);
+  item.append(img, label);
+  return item;
+}
+
+function parseCollectionHash() {
+  const raw = (window.location.hash || '').replace(/^#/, '').trim();
+  return raw || null;
+}
+
+export function initMediaGalleryPage(mediaCfg) {
+  const collections = normalizeCollections(mediaCfg);
+  if (!collections.length) return;
+
+  initFgmediaLogo();
+
+  const nav = document.getElementById('media-collections');
+  const grid = document.getElementById('media-gallery-grid');
+  const gridEmpty = document.getElementById('media-gallery-empty');
+
+  let activeId = collections[0].id;
+
+  function getCollection(id) {
+    return collections.find((c) => c.id === id) || collections[0];
+  }
+
+  function renderGrid(collection) {
+    if (!grid) return;
+    grid.replaceChildren();
+
+    if (!collection.images?.length) {
+      gridEmpty?.removeAttribute('hidden');
+      return;
+    }
+
+    gridEmpty?.setAttribute('hidden', '');
+    const fragment = document.createDocumentFragment();
+    const base = collectionBase(mediaCfg, collection);
+    collection.images.forEach((file, index) => {
+      fragment.appendChild(buildGridItem(base, file, index));
+    });
+    grid.appendChild(fragment);
+  }
+
+  function setCollection(id) {
+    const collection = getCollection(id);
+    activeId = collection.id;
+
+    nav?.querySelectorAll('.media-collection').forEach((btn) => {
+      const isActive = btn.dataset.collection === id;
+      btn.classList.toggle('is-active', isActive);
+      btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    });
+
+    document.title = collection.label + ' · FULL GREAT MEDIA · Full Great Bros';
+    history.replaceState(null, '', '#' + id);
+    renderGrid(collection);
+  }
+
+  collections.forEach((col, i) => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'media-collection';
+    btn.dataset.collection = col.id;
+    btn.textContent = col.label;
+    btn.setAttribute('role', 'tab');
+    btn.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+    if (i === 0) btn.classList.add('is-active');
+    btn.addEventListener('click', () => setCollection(col.id));
+    nav?.appendChild(btn);
+  });
+
+  window.addEventListener('hashchange', () => {
+    const hashId = parseCollectionHash();
+    if (hashId && collections.some((c) => c.id === hashId)) {
+      setCollection(hashId);
+    }
+  });
+
+  const hashId = parseCollectionHash();
+  setCollection(hashId && collections.some((c) => c.id === hashId) ? hashId : activeId);
 }

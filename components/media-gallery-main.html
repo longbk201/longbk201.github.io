@@ -1,15 +1,24 @@
 <main class="media-gallery-main">
-  <section class="media-showcase" id="media-showcase" aria-label="Featured media">
-    <div class="media-showcase-slides" id="media-showcase-slides"></div>
-    <div class="media-showcase-fade" aria-hidden="true"></div>
-    <div class="media-showcase-caption">
-      <h1 class="media-showcase-title">GTR sssss....</h1>
+  <section class="media-gallery-hero" id="media-gallery-hero" aria-label="Full Great Media">
+    <div class="fgmedia-brand" id="fgmedia-brand" tabindex="0">
+      <div class="fgmedia-brand__stage" aria-hidden="false">
+        <div class="fgmedia-brand__logo fgmedia-brand__logo--en">
+          <img src="/assets/svg/fgmedia.svg" alt="Full Great Media" decoding="async" fetchpriority="high" />
+        </div>
+        <div class="fgmedia-brand__logo fgmedia-brand__logo--cn" aria-hidden="true">
+          <img src="/assets/svg/fgmediacn.svg" alt="" decoding="async" />
+        </div>
+        <span class="fgmedia-brand__rect-wipe" aria-hidden="true"></span>
+      </div>
     </div>
   </section>
 
-  <div class="media-gallery-bar">
-    <span class="media-gallery-bar-title">FULL GREAT MEDIA</span>
-  </div>
+  <nav class="media-collections-bar" id="media-collections" aria-label="Photo collections"></nav>
 
-  <div class="media-gallery-masonry" id="media-gallery-grid"></div>
+  <div class="media-fluid-wrap" id="media-fluid-wrap">
+    <div class="media-fluid-grid" id="media-gallery-grid" aria-live="polite"></div>
+    <div class="media-fluid-empty" id="media-gallery-empty" hidden>
+      <p>No images in this collection yet.</p>
+    </div>
+  </div>
 </main>

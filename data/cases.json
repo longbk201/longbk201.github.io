@@ -1,0 +1,32 @@
+{
+  "section": "FG'S AUTO",
+  "brand": {
+    "url": "/FGSAUTO/",
+    "logo": "/assets/images/FGSAUTOLOGO.svg",
+    "tag": "People · Cars · Lifestyle · Shenzhen"
+  },
+  "services": [
+    {
+      "id": "oil",
+      "name": "Oil Changes & Maintenance",
+      "desc": "Conventional, synthetic, and high-mileage oil changes with a full multi-point inspection included every visit.",
+      "icon": "ti-droplet",
+      "badge": "Oil"
+    },
+    {
+      "id": "brakes",
+      "name": "Brake & Suspension",
+      "desc": "From brake pad replacement to full suspension diagnostics — we keep you safe on every road.",
+      "icon": "ti-wave-square",
+      "badge": "Brakes"
+    },
+    {
+      "id": "tires",
+      "name": "Tire Services",
+      "desc": "Mounting, balancing, rotation, and alignment. We work with all major tire brands and sizes.",
+      "icon": "ti-circle",
+      "badge": "Tires"
+    }
+  ],
+  "cases": []
+}

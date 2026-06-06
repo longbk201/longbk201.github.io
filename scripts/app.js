@@ -13,39 +13,45 @@ import { initBusinessHours } from './modules/business-hours.js';
 import { initMobileUi } from './modules/mobile-ui.js';
 
 async function bootstrap() {
-  const cfg = window.FGS_CONFIG;
-  const pageKey = window.FGS_PAGE || 'home';
-  const pageCfg = cfg?.pages?.[pageKey];
-
-  if (!cfg || !pageCfg) {
-    console.error('[FGS] Missing config for page:', pageKey);
-    return;
-  }
-
-  if (pageCfg.title) document.title = pageCfg.title;
-
   try {
-    await loadComponents(pageCfg.components);
+    const cfg = window.FGS_CONFIG;
+    const pageKey = window.FGS_PAGE || 'home';
+    const pageCfg = cfg?.pages?.[pageKey];
+
+    if (!cfg || !pageCfg) {
+      console.error('[FGS] Missing config for page:', pageKey);
+      document.body.classList.add('load-error');
+      return;
+    }
+
+    if (pageCfg.title) document.title = pageCfg.title;
+
+    try {
+      await loadComponents(pageCfg.components);
+    } catch (err) {
+      console.error('[FGS] Component load failed:', err);
+      document.body.classList.add('load-error');
+      return;
+    }
+
+    applyConfig(cfg);
+    initBusinessHours(cfg);
+    initWhatsApp(cfg);
+    initSocial(cfg.social);
+    initContact(cfg);
+    initMobileUi();
+
+    if (pageCfg.initShowcase) initPptShowcase(cfg.racing);
+    if (pageCfg.initFgsAuto) initFgsAutoBlock(cfg);
+    if (pageCfg.initGallery) initMediaPreview(cfg.mediaGallery);
+    if (pageCfg.initRacingPreview) initRacingPreview(cfg.racing);
+    if (pageCfg.initMediaGallery) initMediaGalleryPage(cfg.mediaGallery);
+    if (pageCfg.initRacingPage) initRacingPage(cfg.racing);
+    if (pageCfg.initScroll) initSmoothScroll();
   } catch (err) {
-    console.error('[FGS]', err);
+    console.error('[FGS] Bootstrap failed:', err);
     document.body.classList.add('load-error');
-    return;
   }
-
-  applyConfig(cfg);
-  initBusinessHours(cfg);
-  initWhatsApp(cfg);
-  initSocial(cfg.social);
-  initContact(cfg);
-  initMobileUi();
-
-  if (pageCfg.initShowcase) initPptShowcase(cfg.racing);
-  if (pageCfg.initFgsAuto) initFgsAutoBlock(cfg);
-  if (pageCfg.initGallery) initMediaPreview(cfg.mediaGallery);
-  if (pageCfg.initRacingPreview) initRacingPreview(cfg.racing);
-  if (pageCfg.initMediaGallery) initMediaGalleryPage(cfg.mediaGallery);
-  if (pageCfg.initRacingPage) initRacingPage(cfg.racing);
-  if (pageCfg.initScroll) initSmoothScroll();
 }
 
 bootstrap();

@@ -1,20 +1,14 @@
+import {
+  normalizeCollections,
+  pickCollectionThumbnail,
+  buildCollectionCard,
+  pickRandom,
+  imageSrc,
+  collectionBase,
+} from './media-collections.js';
+
 const DEFAULT_FGS_AUTO_URL = '/FGSAUTO/';
 const DEFAULT_MEDIA_URL = '/mediagallery/';
-const DEFAULT_MEDIA_BASE = '/assets/images/media-gallery/';
-
-/** Bento slot shapes — mix portrait and landscape thumbnails */
-const PREVIEW_SLOTS = [
-  'slot-a',
-  'slot-b',
-  'slot-c',
-  'slot-d',
-  'slot-e',
-  'slot-f',
-  'slot-g',
-  'slot-h',
-  'slot-i',
-  'slot-j',
-];
 
 function escapeHtml(str) {
   return String(str)
@@ -38,38 +32,6 @@ function createFgsAutoLink(url, className, innerHTML) {
   }
   link.innerHTML = innerHTML;
   return link;
-}
-
-function createMediaLink(url, img) {
-  const link = document.createElement('a');
-  link.href = url;
-  if (isExternalUrl(url)) {
-    link.target = '_blank';
-    link.rel = 'noopener noreferrer';
-  }
-  link.appendChild(img);
-  return link;
-}
-
-function shuffle(items) {
-  const list = items.slice();
-  for (let i = list.length - 1; i > 0; i -= 1) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [list[i], list[j]] = [list[j], list[i]];
-  }
-  return list;
-}
-
-function pickRandom(images) {
-  return images[Math.floor(Math.random() * images.length)];
-}
-
-function mediaSrc(base, file) {
-  return base + encodeURIComponent(file);
-}
-
-function pickUnique(images, count) {
-  return shuffle(images).slice(0, Math.min(count, images.length));
 }
 
 function renderServiceCards(container, services, url, cardClass) {
@@ -103,58 +65,59 @@ export function initFgsAutoBlock(cfg) {
   );
 }
 
+/** Homepage: 3× 3:4 collection cards, rotating images, geometric hover wipe. */
 export function initMediaPreview(mediaCfg) {
   const grid = document.getElementById('gallery-grid');
-  if (!grid || !mediaCfg?.images?.length) return;
+  const collections = normalizeCollections(mediaCfg);
+  if (!grid || !collections.length) return;
 
-  const base = mediaCfg.basePath || DEFAULT_MEDIA_BASE;
-  const url = mediaCfg.url || DEFAULT_MEDIA_URL;
-  const count = mediaCfg.homePreviewCount || 10;
+  const baseUrl = mediaCfg.url || DEFAULT_MEDIA_URL;
   const rotateMs = mediaCfg.homeRotateMs || mediaCfg.rotateMs || 8000;
-  const files = pickUnique(mediaCfg.images, count);
-
   const cta = document.getElementById('media-preview-cta');
-  if (cta) cta.href = url;
+  if (cta) cta.href = baseUrl;
 
-  grid.replaceChildren(
-    ...files.map((file, index) => {
-      const img = document.createElement('img');
-      img.src = mediaSrc(base, file);
-      img.alt = 'Full Great Media';
-      img.loading = index < 4 ? 'eager' : 'lazy';
-      img.decoding = 'async';
-      img.dataset.file = file;
+  const thumbCache = {};
+  const fragment = document.createDocumentFragment();
+  const rotateMeta = [];
 
-      const slotClass = PREVIEW_SLOTS[index] || 'slot-a';
-      const link = createMediaLink(url, img);
-      link.className = `media-preview-cell ${slotClass}`;
-      return link;
-    })
-  );
+  collections.forEach((col) => {
+    const thumb = pickCollectionThumbnail(mediaCfg, col, thumbCache);
+    if (!thumb) return;
+    const card = buildCollectionCard(thumb, {
+      href: baseUrl.replace(/\/?$/, '/') + '#' + col.id,
+      variant: 'home',
+    });
+    fragment.appendChild(card);
+    if (col.images?.length > 1) {
+      rotateMeta.push({
+        img: card.querySelector('.media-collection-card__img'),
+        images: col.images,
+        base: collectionBase(mediaCfg, col),
+      });
+    }
+  });
 
-  if (mediaCfg.images.length <= 1) return;
+  grid.appendChild(fragment);
+
+  if (!rotateMeta.length) return;
 
   window.setInterval(() => {
-    const cells = grid.querySelectorAll('.media-preview-cell img');
-    if (!cells.length) return;
-
-    const img = cells[Math.floor(Math.random() * cells.length)];
-    let nextFile = pickRandom(mediaCfg.images);
-    if (mediaCfg.images.length > 1) {
-      while (nextFile === img.dataset.file) {
-        nextFile = pickRandom(mediaCfg.images);
+    rotateMeta.forEach(({ img, images, base }) => {
+      if (!img) return;
+      let next = pickRandom(images);
+      if (images.length > 1) {
+        while (next === img.dataset.file) next = pickRandom(images);
       }
-    }
-
-    img.classList.add('is-fading');
-    window.setTimeout(() => {
-      img.src = mediaSrc(base, nextFile);
-      img.dataset.file = nextFile;
-      const done = () => {
-        img.classList.remove('is-fading');
-        img.removeEventListener('load', done);
-      };
-      img.addEventListener('load', done);
-    }, 320);
+      img.classList.add('is-fading');
+      window.setTimeout(() => {
+        img.src = imageSrc(base, next);
+        img.dataset.file = next;
+        const done = () => {
+          img.classList.remove('is-fading');
+          img.removeEventListener('load', done);
+        };
+        img.addEventListener('load', done);
+      }, 320);
+    });
   }, rotateMs);
 }
