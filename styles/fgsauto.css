@@ -170,7 +170,15 @@
   padding: 40px 48px 0;
 }
 
-.fgsauto-services-title { margin-bottom: 20px; }
+.fgsauto-services-title { margin-bottom: 12px; }
+
+.fgsauto-services-intro {
+  font-size: 13px;
+  line-height: 1.75;
+  color: var(--text-muted);
+  max-width: 560px;
+  margin-bottom: 20px;
+}
 
 .fgsauto-services {
   display: grid;
@@ -238,6 +246,22 @@
   padding-right: 24px;
 }
 
+.fgsauto-service-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 6px;
+}
+
+.fgsauto-service-card--case .fgsauto-service-name {
+  font-size: 16px;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
 .fgsauto-service-arrow {
   position: absolute;
   bottom: 22px;
@@ -258,8 +282,14 @@
   .fgsauto-location { padding: 28px 20px; }
   .fgsauto-services-head { padding: 32px 20px 0; }
   .fgsauto-services {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     padding: 0 20px 40px;
   }
   .fgsauto-brand { flex-direction: column; align-items: flex-start; }
+}
+
+@media (max-width: 540px) {
+  .fgsauto-services {
+    grid-template-columns: 1fr;
+  }
 }

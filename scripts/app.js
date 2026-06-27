@@ -6,6 +6,7 @@ import { initFgsAutoBlock, initMediaPreview } from './modules/gallery.js';
 import { initRacingPreview } from './modules/racing.js';
 import { initMediaGalleryPage } from './media-gallery-page.js';
 import { initRacingPage } from './racing-page.js';
+import { initFgsAutoCasesPage } from './fgsauto-cases-page.js';
 import { initSmoothScroll } from './modules/scroll.js';
 import { initWhatsApp } from './modules/whatsapp.js';
 import { initContact } from './modules/contact.js';
@@ -47,6 +48,7 @@ async function bootstrap() {
     if (pageCfg.initRacingPreview) initRacingPreview(cfg.racing);
     if (pageCfg.initMediaGallery) initMediaGalleryPage(cfg.mediaGallery);
     if (pageCfg.initRacingPage) initRacingPage(cfg.racing);
+    if (pageCfg.initFgsAutoCasesPage) initFgsAutoCasesPage(cfg.fgsAutoCases);
     if (pageCfg.initScroll) initSmoothScroll();
   } catch (err) {
     console.error('[FGS] Bootstrap failed:', err);

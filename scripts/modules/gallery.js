@@ -6,6 +6,7 @@ import {
   imageSrc,
   collectionBase,
 } from './media-collections.js';
+import { renderFgsAutoCaseServices } from './fgsauto-cases.js';
 
 const DEFAULT_FGS_AUTO_URL = '/FGSAUTO/';
 const DEFAULT_MEDIA_URL = '/mediagallery/';
@@ -53,16 +54,14 @@ function renderServiceCards(container, services, url, cardClass) {
 }
 
 export function initFgsAutoBlock(cfg) {
+  const container = document.getElementById('fgsauto-services');
+  if (renderFgsAutoCaseServices(container, cfg?.fgsAutoCases)) return;
+
   const fgs = cfg?.fgsAuto || {};
   const url = fgs.url || DEFAULT_FGS_AUTO_URL;
   const services = cfg?.galleryServices || [];
 
-  renderServiceCards(
-    document.getElementById('fgsauto-services'),
-    services,
-    url,
-    'fgsauto-service-card'
-  );
+  renderServiceCards(container, services, url, 'fgsauto-service-card');
 }
 
 /** Homepage: 3× 3:4 collection cards, rotating images, geometric hover wipe. */

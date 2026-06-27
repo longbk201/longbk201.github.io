@@ -172,6 +172,97 @@ window.FGS_CONFIG = {
     },
   ],
 
+  /**
+   * FG'S AUTO work cases — edit categories & photos here.
+   * Put images under assets/images/fgsauto-cases/<category-id>/ or set basePath per category.
+   * cases: string filename OR { image: 'file.jpg', title: 'Optional caption' }
+   */
+  fgsAutoCases: {
+    url: '/FGSAUTO/cases/',
+    basePath: '/assets/images/fgsauto-cases/',
+    rotateMs: 8000,
+    categories: [
+      {
+        id: 'ppf',
+        name: '贴膜',
+        tag: 'PPF & Film',
+        icon: 'ti-shield',
+        desc: 'Paint protection film, window tint, and vinyl wrap — precision install, lasting finish.',
+        basePath: '/assets/images/media-gallery/',
+        cases: [
+          { image: 'IMG_3.jpg', title: 'Full body PPF' },
+          { image: 'IMG_7.jpg', title: 'Front end PPF' },
+          { image: 'IMG_12.jpg', title: 'Window tint' },
+        ],
+      },
+      {
+        id: 'brakes',
+        name: '刹车',
+        tag: 'Brakes',
+        icon: 'ti-disc',
+        desc: 'Brake pads, rotors, fluid service, and performance upgrades for confident stopping.',
+        basePath: '/assets/images/media-gallery/',
+        cases: [
+          { image: 'IMG_18.jpg', title: 'Brake pad replacement' },
+          { image: 'IMG_22.jpg', title: 'Rotor service' },
+          { image: 'IMG_28.jpg', title: 'Performance brake kit' },
+        ],
+      },
+      {
+        id: 'suspension',
+        name: '避震',
+        tag: 'Suspension',
+        icon: 'ti-arrows-vertical',
+        desc: 'Coilovers, shocks, and suspension tuning for comfort, control, and track-ready setup.',
+        basePath: '/assets/images/media-gallery/',
+        cases: [
+          { image: 'IMG_32.jpg', title: 'Coilover install' },
+          { image: 'IMG_40.jpg', title: 'Suspension refresh' },
+          { image: 'IMG_45.jpg', title: 'Lowering setup' },
+        ],
+      },
+      {
+        id: 'bodykit',
+        name: '包围',
+        tag: 'Body Kits',
+        icon: 'ti-car',
+        desc: 'Aero kits, lips, diffusers, and body styling — fitted and finished in-house.',
+        basePath: '/assets/images/media-gallery/',
+        cases: [
+          { image: 'IMG_50.jpg', title: 'Front lip install' },
+          { image: 'IMG_55.jpg', title: 'Side skirt fitment' },
+          { image: 'IMG_60.jpg', title: 'Rear diffuser' },
+        ],
+      },
+      {
+        id: 'maintenance',
+        name: '保养',
+        tag: 'Maintenance',
+        icon: 'ti-tool',
+        desc: 'Oil changes, filters, fluids, and scheduled maintenance with multi-point inspection.',
+        basePath: '/assets/images/media-gallery/',
+        cases: [
+          { image: 'IMG_64.jpg', title: 'Synthetic oil service' },
+          { image: 'IMG_67.jpg', title: 'Fluid top-up' },
+          { image: 'IMG_70.jpg', title: 'Multi-point inspection' },
+        ],
+      },
+      {
+        id: 'alignment',
+        name: '轮毂定位',
+        tag: 'Wheel Alignment',
+        icon: 'ti-steering-wheel',
+        desc: 'Wheel alignment, balancing, and tire mounting for even wear and straight tracking.',
+        basePath: '/assets/images/media-gallery/',
+        cases: [
+          { image: 'IMG_74.jpg', title: 'Four-wheel alignment' },
+          { image: 'IMG_78.jpg', title: 'Tire mount & balance' },
+          { image: 'IMG_82.jpg', title: 'Camber adjustment' },
+        ],
+      },
+    ],
+  },
+
   /** Media gallery — images in assets/images/media-gallery/ */
   mediaGallery: {
     url: '/mediagallery/',
@@ -283,6 +374,16 @@ window.FGS_CONFIG = {
         { mount: 'component-nav', file: 'site-nav.html' },
         { mount: 'component-racing-main', file: 'racing-main.html' },
         { mount: 'component-social', file: 'social.html' },
+        { mount: 'component-footer', file: 'footer.html' },
+      ],
+    },
+    fgsautoCases: {
+      title: "案例展示 · FG'S AUTO · Full Great Bros",
+      initFgsAutoCasesPage: true,
+      initScroll: true,
+      components: [
+        { mount: 'component-nav', file: 'site-nav.html' },
+        { mount: 'component-cases-main', file: 'fgsauto-cases-main.html' },
         { mount: 'component-footer', file: 'footer.html' },
       ],
     },
